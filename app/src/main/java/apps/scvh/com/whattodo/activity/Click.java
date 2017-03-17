@@ -15,6 +15,7 @@ public class Click extends FragmentActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_click);
+        findViewById(R.id.push_button).setOnClickListener(this);
     }
 
     @Override
