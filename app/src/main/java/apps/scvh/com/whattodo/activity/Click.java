@@ -1,13 +1,11 @@
 package apps.scvh.com.whattodo.activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
 
 import apps.scvh.com.whattodo.R;
-import fragments.Movie;
 
 public class Click extends FragmentActivity implements View.OnClickListener {
 
