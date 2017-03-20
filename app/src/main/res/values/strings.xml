@@ -3,4 +3,10 @@
     <string name="click">Touch!</string>
     <string name="imdb_stats">http://www.imdb.com/stats</string>
     <string name="imdb_css_selector">[cellspacing="2"] tr [align="right"] </string>
+    <string name="log_stats">stats</string>
+    <string name="log_stats_start">Getting stats</string>
+    <string name="log_omdb_api">omdb api</string>
+    <string name="log_id_generation">id generation</string>
+    <string name="log_id_generation_same_id">seems like there are two same id, skipping</string>
+    <string name="imdb_prefix">tt</string>
 </resources>
