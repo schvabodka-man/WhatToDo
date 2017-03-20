@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
-    useLibrary 'org.apache.http.legacy' // this one is for omdb api
     defaultConfig {
         applicationId "apps.scvh.com.whattodo"
         minSdkVersion 21
@@ -43,7 +42,8 @@ dependencies {
     compile group: 'io.reactivex.rxjava2', name: 'rxandroid', version: '2.0.1'
     compile group: 'com.squareup.okhttp', name: 'okhttp', version: '2.7.5'
     compile group: 'org.jsoup', name: 'jsoup', version: '1.10.2'
-    compile group: 'com.omertron', name: 'API-OMDB', version: '1.3'
+    compile 'com.github.Omertron:api-omdb:API-OMDB-1.4'
+    compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
     testCompile 'junit:junit:4.12'
 }
 

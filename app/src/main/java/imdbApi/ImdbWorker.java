@@ -14,6 +14,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import apps.scvh.com.whattodo.R;
 import essences.Movie;
@@ -32,9 +33,11 @@ public class ImdbWorker {
     public Movie getMovie(int id) {
         MovieBuilder movieBuilder = new MovieBuilder();
         Movie movie = new Movie();
+        String withLeadingZeroes = String.format(Locale.US, "%07d", id);
         try {
             OmdbVideoFull result = omdbApi.getInfo(new OmdbBuilder().setImdbId(String.valueOf
-                    (context.getResources().getText(R.string.imdb_prefix)) + id).build());
+                    (context.getResources().getText(R.string.imdb_prefix)) + withLeadingZeroes)
+                    .build());
             movieBuilder.setGenre(result.getGenre())
                     .setYear(result.getYear())
                     .setName(result.getTitle())
@@ -45,8 +48,7 @@ public class ImdbWorker {
                     .setAwards(result.getAwards())
                     .setDirector(result.getDirector())
                     .setImdbScore(result.getImdbRating())
-                    .setMetascore(result.getMetascore())
-                    .setTomato(result.getTomatoRating());
+                    .setMetascore(result.getMetascore());
             movie = movieBuilder.build();
         } catch (OMDBException e) {
             Log.e(String.valueOf(context.getResources().getText(R.string.log_omdb_api)), e

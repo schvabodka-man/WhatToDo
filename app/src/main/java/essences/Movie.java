@@ -6,7 +6,6 @@ public class Movie {
     private int id;
     private String name;
     private String year;
-    private String tomatoScore;
     private String imdbScore;
     private int metacriticScore;
     private String description;
@@ -95,14 +94,6 @@ public class Movie {
 
     public void setYear(String year) {
         this.year = year;
-    }
-
-    public String getTomatoScore() {
-        return tomatoScore;
-    }
-
-    public void setTomatoScore(String tomatoScore) {
-        this.tomatoScore = tomatoScore;
     }
 
     public String getDescription() {

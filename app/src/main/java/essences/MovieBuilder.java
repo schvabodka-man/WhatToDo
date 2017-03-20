@@ -32,11 +32,6 @@ public class MovieBuilder {
         return this;
     }
 
-    public MovieBuilder setTomato(String tomatoScore) {
-        movie.setTomatoScore(tomatoScore);
-        return this;
-    }
-
     public MovieBuilder setImdbScore(String imdbScore) {
         movie.setImdbScore(imdbScore);
         return this;
