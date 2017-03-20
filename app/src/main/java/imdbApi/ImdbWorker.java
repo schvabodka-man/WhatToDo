@@ -33,7 +33,8 @@ public class ImdbWorker {
     public Movie getMovie(int id) {
         MovieBuilder movieBuilder = new MovieBuilder();
         Movie movie = new Movie();
-        String withLeadingZeroes = String.format(Locale.US, "%07d", id);
+        String withLeadingZeroes = String.format(Locale.US, context.getResources().getString(R
+                .string.imdb_leading_zeroes), id); //This is for zeroes at the beginning of id
         try {
             OmdbVideoFull result = omdbApi.getInfo(new OmdbBuilder().setImdbId(String.valueOf
                     (context.getResources().getText(R.string.imdb_prefix)) + withLeadingZeroes)
@@ -62,12 +63,13 @@ public class ImdbWorker {
                 (context.getResources().getText(R.string.log_stats_start)));
         Document imdbStats;
         Elements numberOfMovies = new Elements();
+        //Now there goes magic, there are no normal api for getting imdb stats so you need to
+        // parse html
         try {
             imdbStats = Jsoup.connect(String.valueOf(context.getResources().getText(R.string
                     .imdb_stats))).get();
             numberOfMovies = imdbStats.select(String.valueOf(context.getResources().getText(R
-                    .string.imdb_css_selector))); //that's a magic, they don't have normal api
-            // for this
+                    .string.imdb_css_selector)));
         } catch (IOException e) {
             e.printStackTrace();
         }

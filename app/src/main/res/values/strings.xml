@@ -9,4 +9,5 @@
     <string name="log_id_generation">id generation</string>
     <string name="log_id_generation_same_id">seems like there are two same id, skipping</string>
     <string name="imdb_prefix">tt</string>
+    <string name="imdb_leading_zeroes">%07d</string>
 </resources>

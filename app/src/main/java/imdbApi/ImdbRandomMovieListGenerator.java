@@ -4,16 +4,29 @@ import android.content.Context;
 import android.util.Log;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 
 import apps.scvh.com.whattodo.R;
+import essences.Movie;
 
 public class ImdbRandomMovieListGenerator {
 
     private Context context;
+    private ImdbWorker imdbWorker;
 
-    public ImdbRandomMovieListGenerator(Context context) {
+    public ImdbRandomMovieListGenerator(Context context, ImdbWorker imdbWorker) {
         this.context = context;
+        this.imdbWorker = imdbWorker;
+    }
+
+    public HashSet<Movie> getListOfMovies(HashSet<Integer> idSet) {
+        Iterator<Integer> movieListIterator = idSet.iterator();
+        HashSet<Movie> movies = new HashSet<>();
+        if (movieListIterator.hasNext()) {
+            movies.add(imdbWorker.getMovie(movieListIterator.next()));
+        }
+        return movies;
     }
 
     public HashSet<Integer> getListOfRandomId(int length, int maxId) {
