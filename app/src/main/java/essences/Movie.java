@@ -103,4 +103,10 @@ public class Movie {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        String objectToString = name + " " + year + " " + " " + description;
+        return objectToString;
+    }
 }
