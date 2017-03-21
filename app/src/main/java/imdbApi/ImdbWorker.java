@@ -48,7 +48,7 @@ public class ImdbWorker {
                     .setActors(result.getActors())
                     .setAwards(result.getAwards())
                     .setDirector(result.getDirector())
-                    .setImdbScore(result.getImdbRating())
+                    .setImdbScore(Integer.parseInt(result.getImdbRating()))
                     .setMetascore(result.getMetascore());
             movie = movieBuilder.build();
         } catch (OMDBException e) {

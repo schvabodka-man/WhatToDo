@@ -6,7 +6,7 @@ public class Movie {
     private int id;
     private String name;
     private String year;
-    private String imdbScore;
+    private double imdbScore;
     private int metacriticScore;
     private String description;
     private String director;
@@ -14,6 +14,16 @@ public class Movie {
     private String actors;
     private String runtime;
     private String genre;
+
+    private double finalScore;
+
+    public double getFinalScore() {
+        return finalScore;
+    }
+
+    public void setFinalScore(double finalScore) {
+        this.finalScore = finalScore;
+    }
 
     public int getId() {
         return id;
@@ -23,11 +33,11 @@ public class Movie {
         this.id = id;
     }
 
-    public String getImdbScore() {
+    public double getImdbScore() {
         return imdbScore;
     }
 
-    public void setImdbScore(String imdbScore) {
+    public void setImdbScore(double imdbScore) {
         this.imdbScore = imdbScore;
     }
 
