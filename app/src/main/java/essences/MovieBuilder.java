@@ -32,7 +32,7 @@ public class MovieBuilder {
         return this;
     }
 
-    public MovieBuilder setImdbScore(int imdbScore) {
+    public MovieBuilder setImdbScore(double imdbScore) {
         movie.setImdbScore(imdbScore);
         return this;
     }

@@ -10,4 +10,9 @@
     <string name="log_id_generation_same_id">seems like there are two same id, skipping</string>
     <string name="imdb_prefix">tt</string>
     <string name="imdb_leading_zeroes">%07d</string>
+    <string name="imdb_na">N/A</string>
+    <string name="log_omdb_unknown_imdb_rating">Unknown imdb rating, setting 1</string>
+    <string name="log_imdb_score">imdb score is </string>
+    <string name="log_null_movie">Movie is null, fallbacking</string>
+    <string name="log_fallback_id">Fallback id is </string>
 </resources>

@@ -20,6 +20,10 @@ import apps.scvh.com.whattodo.R;
 import essences.Movie;
 import essences.MovieBuilder;
 
+/**
+ * ENG this class is getting data from omdb api
+ * RUS этот класс получает данные из апи
+ */
 public class ImdbWorker {
 
     private Context context;
@@ -30,6 +34,12 @@ public class ImdbWorker {
         this.omdbApi = omdbApi;
     }
 
+    /**
+     * ENG this one get's movie data by id
+     * RUS этот метод получает фильм по id'шке
+     * @param id the movie id
+     * @return the movie
+     */
     public Movie getMovie(int id) {
         MovieBuilder movieBuilder = new MovieBuilder();
         Movie movie = new Movie();
@@ -48,8 +58,18 @@ public class ImdbWorker {
                     .setActors(result.getActors())
                     .setAwards(result.getAwards())
                     .setDirector(result.getDirector())
-                    .setImdbScore(Integer.parseInt(result.getImdbRating()))
                     .setMetascore(result.getMetascore());
+            if (result.getImdbRating().equals(context.getResources().getString(R.string.imdb_na))) {
+                Log.d(String.valueOf(context.getResources().getText(R.string.log_omdb_api)),
+                        String.valueOf(context.getResources().getText(R.string
+                                .log_omdb_unknown_imdb_rating)));
+                movieBuilder.setImdbScore(1);
+            } else {
+                Log.i(String.valueOf(context.getResources().getText(R.string.log_omdb_api)),
+                        String.valueOf(context.getResources().getText(R.string.log_imdb_score)) +
+                                result.getImdbRating());
+                movieBuilder.setImdbScore(Double.parseDouble(result.getImdbRating()));
+            }
             movie = movieBuilder.build();
         } catch (OMDBException e) {
             Log.e(String.valueOf(context.getResources().getText(R.string.log_omdb_api)), e
@@ -58,6 +78,11 @@ public class ImdbWorker {
         return movie;
     }
 
+    /**
+     * ENG this method is getting maximum idm id by parsing html(there are no api for that)
+     * RUS этот метод получает максимальную id'шку на имбд путем парсинг хтмла(апи нету)
+     * @return the maximum imdb id
+     */
     public int getMovieStats() {
         Log.d(String.valueOf(context.getResources().getText(R.string.log_stats)), String.valueOf
                 (context.getResources().getText(R.string.log_stats_start)));
