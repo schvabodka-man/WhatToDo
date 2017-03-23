@@ -14,7 +14,7 @@ import apps.scvh.com.whattodo.util.essences.Movie;
  */
 public class ImdbRandomMoviePicker {
 
-    ImdbWorker worker;
+    private ImdbWorker worker;
 
     public ImdbRandomMoviePicker(ImdbWorker worker) {
         this.worker = worker;
