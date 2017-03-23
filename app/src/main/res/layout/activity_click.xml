@@ -5,11 +5,11 @@
     android:id="@+id/activity_click"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="apps.scvh.com.whattodo.activity.Click">
+    tools:context=".ui.activity.Click">
 
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="fragments.ClickButtonFragment"
+        android:name="apps.scvh.com.whattodo.ui.fragments.ClickButtonFragment"
         tools:layout="@layout/fragment_click_button"/>
 </LinearLayout>

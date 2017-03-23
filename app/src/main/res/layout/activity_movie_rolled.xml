@@ -5,10 +5,10 @@
     android:id="@+id/activity_movie_rolled"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="apps.scvh.com.whattodo.activity.MovieRolled">
+    tools:context=".ui.activity.MovieRolled">
 
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="fragments.Movie"/>
+        android:name="apps.scvh.com.whattodo.ui.fragments.Movie"/>
 </RelativeLayout>

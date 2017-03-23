@@ -1,7 +1,7 @@
-package essences;
+package apps.scvh.com.whattodo.util.essences;
 
 
-public class Movie {
+public class Movie implements Comparable<Movie> {
 
     private int id;
     private String name;
@@ -118,5 +118,16 @@ public class Movie {
     public String toString() {
         String objectToString = name + " " + year + " " + " " + description;
         return objectToString;
+    }
+
+    @Override
+    public int compareTo(Movie o) {
+        if (o.getFinalScore() > this.finalScore) {
+            return 1;
+        } else if (o.getFinalScore() < this.finalScore) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }

@@ -1,4 +1,4 @@
-package apps.scvh.com.whattodo.activity;
+package apps.scvh.com.whattodo.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;

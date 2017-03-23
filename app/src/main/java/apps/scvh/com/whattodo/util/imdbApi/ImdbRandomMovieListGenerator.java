@@ -1,4 +1,4 @@
-package imdbApi;
+package apps.scvh.com.whattodo.util.imdbApi;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import apps.scvh.com.whattodo.R;
-import essences.Movie;
+import apps.scvh.com.whattodo.util.essences.Movie;
 
 /**
  * RUS Метод отвечает за генерацию рандомного списка фильмов

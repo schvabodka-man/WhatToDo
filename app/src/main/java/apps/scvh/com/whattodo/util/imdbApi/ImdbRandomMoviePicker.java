@@ -1,11 +1,12 @@
-package imdbApi;
+package apps.scvh.com.whattodo.util.imdbApi;
 
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
 
-import essences.Movie;
+import apps.scvh.com.whattodo.util.essences.Movie;
 
 /**
  * RUS этот класс отвечает за получение  рандомного фильма из списка фильмов
@@ -13,16 +14,22 @@ import essences.Movie;
  */
 public class ImdbRandomMoviePicker {
 
+    ImdbWorker worker;
+
+    public ImdbRandomMoviePicker(ImdbWorker worker) {
+        this.worker = worker;
+    }
+
     /**
      * ENG this one is counting the "score" of movie
      * RUS этот метод считает бал фильма
      * @param movie the movie
      * @return the score of movie
      */
-    public double countScore(Movie movie) {
+    private double countScore(Movie movie) {
         Random random = new Random();
         double randomScore = random.nextInt(100);
-        return randomScore * movie.getMetacriticScore();
+        return randomScore * movie.getImdbScore() * movie.getMetacriticScore();
     }
 
     /**
@@ -33,11 +40,12 @@ public class ImdbRandomMoviePicker {
      */
     public Movie pickBestMovie(HashSet<Movie> movies) {
         Iterator<Movie> moviesIterator = movies.iterator();
-        Movie countable;
+        Movie nextMovie;
         while (moviesIterator.hasNext()) {
-            countable = moviesIterator.next();
-            countScore(countable);
+            nextMovie = moviesIterator.next();
+            countScore(nextMovie);
         }
-        return null;
+        Movie finalMovie = Collections.max(movies);
+        return finalMovie;
     }
 }

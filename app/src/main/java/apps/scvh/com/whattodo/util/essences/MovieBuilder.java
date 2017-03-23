@@ -1,4 +1,4 @@
-package essences;
+package apps.scvh.com.whattodo.util.essences;
 
 public class MovieBuilder {
 

@@ -1,4 +1,4 @@
-package imdbApi;
+package apps.scvh.com.whattodo.util.imdbApi;
 
 
 import android.content.Context;
@@ -17,8 +17,8 @@ import java.io.IOException;
 import java.util.Locale;
 
 import apps.scvh.com.whattodo.R;
-import essences.Movie;
-import essences.MovieBuilder;
+import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.essences.MovieBuilder;
 
 /**
  * ENG this class is getting data from omdb api
