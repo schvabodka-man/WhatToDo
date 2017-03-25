@@ -14,11 +14,6 @@ import apps.scvh.com.whattodo.util.essences.Movie;
  */
 public class ImdbRandomMoviePicker {
 
-    private ImdbWorker worker;
-
-    public ImdbRandomMoviePicker(ImdbWorker worker) {
-        this.worker = worker;
-    }
 
     /**
      * ENG this one is counting the "score" of movie
