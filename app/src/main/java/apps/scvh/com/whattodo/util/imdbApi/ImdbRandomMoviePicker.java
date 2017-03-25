@@ -5,8 +5,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.concurrent.Callable;
 
 import apps.scvh.com.whattodo.util.essences.Movie;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 
 /**
  * RUS этот класс отвечает за получение  рандомного фильма из списка фильмов
@@ -27,13 +30,14 @@ public class ImdbRandomMoviePicker {
         return randomScore * movie.getImdbScore() * movie.getMetacriticScore();
     }
 
+
     /**
      * ENG picks the best movie from set
      * RUS выбирает лучшее кинцо из списка
      * @param movies set of movies
      * @return the best movie
      */
-    public Movie pickBestMovie(HashSet<Movie> movies) {
+    private Movie pickBestMovie(HashSet<Movie> movies) {
         Iterator<Movie> moviesIterator = movies.iterator();
         Movie nextMovie;
         while (moviesIterator.hasNext()) {
@@ -42,5 +46,14 @@ public class ImdbRandomMoviePicker {
         }
         Movie finalMovie = Collections.max(movies);
         return finalMovie;
+    }
+
+    public Observable<Movie> getBestMovieObservable(final HashSet<Movie> movies) {
+        return Observable.defer(new Callable<ObservableSource<Movie>>() {
+            @Override
+            public ObservableSource<Movie> call() throws Exception {
+                return Observable.just(pickBestMovie(movies));
+            }
+        });
     }
 }

@@ -6,9 +6,13 @@ import android.util.Log;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.concurrent.Callable;
 
 import apps.scvh.com.whattodo.R;
 import apps.scvh.com.whattodo.util.essences.Movie;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+
 
 /**
  * RUS Метод отвечает за генерацию рандомного списка фильмов
@@ -30,7 +34,7 @@ public class ImdbRandomMovieListGenerator {
      * @param idSet id of movies
      * @return the set of movies
      */
-    public HashSet<Movie> getListOfMovies(HashSet<Integer> idSet, int maxId) {
+    private HashSet<Movie> getListOfMovies(HashSet<Integer> idSet, int maxId) {
         Iterator<Integer> movieListIterator = idSet.iterator();
         HashSet<Movie> movies = new HashSet<>();
         Movie movie;
@@ -55,7 +59,7 @@ public class ImdbRandomMovieListGenerator {
      * @param maxId  the current max id on imdb
      * @return the list of random id
      */
-    public HashSet<Integer> getListOfRandomId(int length, int maxId) {
+    private HashSet<Integer> getListOfRandomId(int length, int maxId) {
         Random random = new Random();
         HashSet<Integer> randomIdNumbers = new HashSet<>();
         int nextId; //this instead of int
@@ -83,6 +87,25 @@ public class ImdbRandomMovieListGenerator {
         Log.d(String.valueOf(context.getResources().getString(R.string.log_fallback_id)), String
                 .valueOf(newId));
         return newId;
+    }
+
+    public Observable<HashSet<Movie>> getMovieListObservable(final HashSet<Integer> idSet, final int
+            maxId) {
+        return Observable.defer(new Callable<ObservableSource<HashSet<Movie>>>() {
+            @Override
+            public ObservableSource<HashSet<Movie>> call() {
+                return Observable.just(getListOfMovies(idSet, maxId));
+            }
+        });
+    }
+
+    public Observable<HashSet<Integer>> getMovieListObservable(final int length, final int maxId) {
+        return Observable.defer(new Callable<ObservableSource<HashSet<Integer>>>() {
+            @Override
+            public ObservableSource<HashSet<Integer>> call() {
+                return Observable.just(getListOfRandomId(length, maxId));
+            }
+        });
     }
 
 }

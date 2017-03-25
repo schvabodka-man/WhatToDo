@@ -1,12 +1,9 @@
 package apps.scvh.com.whattodo.util;
 
-
-import java.util.HashSet;
-
-import apps.scvh.com.whattodo.util.essences.Movie;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMovieListGenerator;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMoviePicker;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbWorker;
+
 
 /**
  * ENG Simple decorator to hack all together
@@ -27,10 +24,4 @@ public class MovieWatchPicker {
         this.listGenerator = listGenerator;
     }
 
-    public Movie getMovieToWatch() {
-        int maxId = worker.getMovieStats();
-        HashSet<Movie> randomMovies = listGenerator.getListOfMovies(listGenerator
-                .getListOfRandomId(NUMBER_OF_MOVIES, maxId), maxId);
-        return randomMoviePicker.pickBestMovie(randomMovies);
-    }
 }
