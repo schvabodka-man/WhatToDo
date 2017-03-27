@@ -15,13 +15,10 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.Locale;
-import java.util.concurrent.Callable;
 
 import apps.scvh.com.whattodo.R;
 import apps.scvh.com.whattodo.util.essences.Movie;
 import apps.scvh.com.whattodo.util.essences.MovieBuilder;
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
 
 /**
  * ENG this class is getting data from omdb api
@@ -43,7 +40,7 @@ public class ImdbWorker {
      * @param id the movie id
      * @return the movie
      */
-    Movie getMovie(int id) {
+    public Movie getMovie(int id) {
         MovieBuilder movieBuilder = new MovieBuilder();
         Movie movie = new Movie();
         String withLeadingZeroes = String.format(Locale.US, context.getResources().getString(R
@@ -86,7 +83,7 @@ public class ImdbWorker {
      * RUS этот метод получает максимальную id'шку на имбд путем парсинг хтмла(апи нету)
      * @return the maximum imdb id
      */
-    private int getMovieStats() {
+    public int getMovieStats() {
         Log.d(String.valueOf(context.getResources().getText(R.string.log_stats)), String.valueOf
                 (context.getResources().getText(R.string.log_stats_start)));
         Document imdbStats;
@@ -107,23 +104,7 @@ public class ImdbWorker {
         return movieNumber;
     }
 
-    public Observable<Integer> getMovieStatsObservable() {
-        return Observable.defer(new Callable<ObservableSource<Integer>>() {
-            @Override
-            public ObservableSource<Integer> call() throws Exception {
-                return Observable.just(getMovieStats());
-            }
-        });
-    }
 
-    public Observable<Movie> getMovieObservable(final int id) {
-        return Observable.defer(new Callable<ObservableSource<Movie>>() {
-            @Override
-            public ObservableSource<Movie> call() throws Exception {
-                return Observable.just(getMovie(id));
-            }
-        });
-    }
 
 }
 
