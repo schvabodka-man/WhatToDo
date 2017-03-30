@@ -24,10 +24,7 @@ public class MovieRolled extends FragmentActivity {
         ImdbWorker worker = new ImdbWorker(this, new OmdbApi());
         ImdbRandomMovieListGenerator generator = new ImdbRandomMovieListGenerator(this, worker);
         handler = new UIHandler(this, new MovieWatchPicker(randomMoviePicker, worker, generator));
-        setBestMovie();
+        handler.setMovieFront();
     }
 
-    private void setBestMovie() {
-        handler.setBestMovie();
-    }
 }

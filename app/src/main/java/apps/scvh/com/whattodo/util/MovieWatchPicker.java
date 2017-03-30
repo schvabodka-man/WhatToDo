@@ -29,8 +29,8 @@ public class MovieWatchPicker {
         this.listGenerator = listGenerator;
     }
 
-    private Observable<Movie> getMovieObservable() {
-        Observable<Movie> moviePick = Observable.defer(new Callable<Observable<Integer>>() {
+    Observable<Movie> getMovieObservable() {
+        return Observable.defer(new Callable<Observable<Integer>>() {
             @Override
             public Observable<Integer> call() throws Exception {
                 return Observable.just(worker.getMovieStats());
@@ -45,16 +45,7 @@ public class MovieWatchPicker {
                 .subscribeOn(Schedulers.computation())
                 .observeOn(Schedulers.computation())
                 .map(movieSet -> randomMoviePicker.pickBestMovie(movieSet));
-        return moviePick;
     }
 
-    private Movie getBestMoviefromObservable(Observable<Movie> observable) {
-        Movie bestMovie = observable.subscribeOn(Schedulers.computation()).blockingFirst();
-        return bestMovie;
-    }
-
-    public Movie movieReceive() {
-        return getBestMoviefromObservable(getMovieObservable());
-    }
 
 }
