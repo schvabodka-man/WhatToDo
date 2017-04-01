@@ -14,6 +14,7 @@ public class Movie implements Comparable<Movie> {
     private String actors;
     private String runtime;
     private String genre;
+    private String pictureId;
 
     private double finalScore;
 
@@ -112,6 +113,14 @@ public class Movie implements Comparable<Movie> {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPictureId() {
+        return pictureId;
+    }
+
+    public void setPictureId(String pictureId) {
+        this.pictureId = pictureId;
     }
 
     @Override

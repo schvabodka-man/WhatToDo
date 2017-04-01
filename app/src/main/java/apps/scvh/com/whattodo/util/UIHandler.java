@@ -14,16 +14,13 @@ public class UIHandler {
     private Context context;
     private MovieWatchPicker picker;
 
-    //There goes a dirty hack, hard to explain why i done it in that way bug at all it works and
-    // it clean
-
     public UIHandler(Context context, MovieWatchPicker picker) {
         this.context = context;
         this.picker = picker;
     }
 
     private void setBestMovie(Observable<Movie> observable) {
-        TextView forWorking;
+        TextView forWorking; //There goes a dirty hack, hard to explain why i done it in that way
         Movie movie = observable.blockingFirst();
         forWorking = (TextView)
                 ((Activity) context).findViewById(R.id.fullText);
@@ -33,10 +30,24 @@ public class UIHandler {
         forWorking.setText(movie.getYear());
         forWorking = (TextView)
                 ((Activity) context).findViewById(R.id.meter);
-        forWorking.setText(movie.getMetacriticScore());
+        if (movie.getMetacriticScore() == 0) {
+            forWorking.setText(context.getString(R.string.metascore_na));
+        } else {
+            forWorking.setText(context.getString(R.string.metascore) + movie.getMetacriticScore()
+            ); // yes i know
+        }
         forWorking = (TextView)
                 ((Activity) context).findViewById(R.id.title);
         forWorking.setText(movie.getName());
+        forWorking = (TextView)
+                ((Activity) context).findViewById(R.id.actors);
+        forWorking.setText(movie.getActors());
+        forWorking = (TextView)
+                ((Activity) context).findViewById(R.id.awards);
+        forWorking.setText(movie.getAwards());
+        forWorking = (TextView)
+                ((Activity) context).findViewById(R.id.director);
+        forWorking.setText(movie.getDirector());
     }
 
     public void setMovieFront() {

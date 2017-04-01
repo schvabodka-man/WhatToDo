@@ -66,4 +66,9 @@ public class MovieBuilder {
         movie.setGenre(genre);
         return this;
     }
+
+    public MovieBuilder setPicture(String picture) {
+        movie.setPictureId(picture);
+        return this;
+    }
 }

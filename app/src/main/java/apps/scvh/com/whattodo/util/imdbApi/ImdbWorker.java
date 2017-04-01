@@ -58,7 +58,8 @@ public class ImdbWorker {
                     .setActors(result.getActors())
                     .setAwards(result.getAwards())
                     .setDirector(result.getDirector())
-                    .setMetascore(result.getMetascore());
+                    .setMetascore(result.getMetascore())
+                    .setPicture(result.getPoster());
             if (result.getImdbRating().equals(context.getResources().getString(R.string.imdb_na))) {
                 Log.d(String.valueOf(context.getResources().getText(R.string.log_omdb_api)),
                         String.valueOf(context.getResources().getText(R.string

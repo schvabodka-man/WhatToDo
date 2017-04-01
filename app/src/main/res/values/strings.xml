@@ -15,4 +15,6 @@
     <string name="log_imdb_score">imdb score is </string>
     <string name="log_null_movie">Movie is null, fallbacking</string>
     <string name="log_fallback_id">Fallback id is </string>
+    <string name="metascore">Metascore:</string>
+    <string name="metascore_na">Metascore: N/A</string>
 </resources>
