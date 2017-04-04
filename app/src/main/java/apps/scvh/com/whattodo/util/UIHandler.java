@@ -27,7 +27,7 @@ public class UIHandler {
         return picker.getMovieObservable();
     }
 
-    public Observable<Drawable> getPicture(String id) {
+    public Observable<Drawable> getPicture(final String id) {
         return Observable.defer(new Callable<ObservableSource<Drawable>>() {
             @Override
             public ObservableSource<Drawable> call() throws Exception {
