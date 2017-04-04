@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/cover"
-                android:gravity="left"
+                android:gravity="start"
                 android:paddingEnd="10dp"
                 android:paddingStart="10dp"
                 android:textSize="30dp"/>
@@ -35,8 +35,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
+                android:layout_below="@+id/genre"
+                android:gravity="end"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/genre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/title"
-                android:gravity="right"
+                android:gravity="start"
                 android:paddingEnd="10dp"
                 android:paddingStart="10dp"
                 android:textSize="20dp"/>
@@ -47,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/year"
-                android:gravity="right"
+                android:gravity="end"
                 android:paddingEnd="10dp"
                 android:paddingStart="10dp"
                 android:textSize="20dp"/>

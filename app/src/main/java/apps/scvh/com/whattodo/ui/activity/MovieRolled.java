@@ -29,6 +29,7 @@ public class MovieRolled extends FragmentActivity {
     private TextView director;
     private TextView actors;
     private TextView awards;
+    private TextView genre;
     private ImageView picture;
 
     @Override
@@ -62,6 +63,7 @@ public class MovieRolled extends FragmentActivity {
             director.setText(movie.getDirector());
             actors.setText(movie.getActors());
             awards.setText(movie.getAwards());
+            genre.setText(movie.getGenre());
             if (movie.getPictureId().equals(getString(R.string.imdb_na))) {
                 picture.setBackground(getDrawable(R.mipmap.placeholder));
             } else {
@@ -78,6 +80,7 @@ public class MovieRolled extends FragmentActivity {
         director = (TextView) findViewById(R.id.director);
         actors = (TextView) findViewById(R.id.actors);
         awards = (TextView) findViewById(R.id.awards);
+        genre = (TextView) findViewById(R.id.genre);
         picture = (ImageView) findViewById(R.id.cover);
     }
 }

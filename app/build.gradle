@@ -52,6 +52,8 @@ dependencies {
     compile group: 'org.jsoup', name: 'jsoup', version: '1.10.2'
     compile 'com.github.Omertron:api-omdb:API-OMDB-1.4'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
+//    compile group: 'com.google.dagger', name: 'dagger', version: '2.10'
+//    annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
     testCompile 'junit:junit:4.12'
 }
 
