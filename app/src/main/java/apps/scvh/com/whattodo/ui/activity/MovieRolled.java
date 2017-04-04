@@ -20,6 +20,9 @@ public class MovieRolled extends FragmentActivity {
         this.handler = handler;
     }
 
+    public MovieRolled() {
+    }
+
     private UIHandler handler;
 
     //Heh
@@ -39,7 +42,6 @@ public class MovieRolled extends FragmentActivity {
         setContentView(R.layout.activity_movie_rolled);
         initFields();
         setMovie(handler.getMovieObservable());
-
     }
 
     private void setPicture(Observable<Drawable> coverObservable) {

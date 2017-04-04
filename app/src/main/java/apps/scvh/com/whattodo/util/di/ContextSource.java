@@ -9,6 +9,10 @@ import javax.inject.Named;
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ * ENG class i need to get app context
+ * RUS класс нужный мне для получения контекста
+ */
 @Module
 public class ContextSource extends Application {
 

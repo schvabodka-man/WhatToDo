@@ -31,6 +31,11 @@ public class MovieWatchPicker {
         this.listGenerator = listGenerator;
     }
 
+    /**
+     * ENG Just getting observable with best movie
+     * RUS Метод просто достающим обсервер с лучшим кинцом
+     * @return the movie observable
+     */
     Observable<Movie> getMovieObservable() {
         return Observable.defer(new Callable<Observable<Movie>>() {
             @Override

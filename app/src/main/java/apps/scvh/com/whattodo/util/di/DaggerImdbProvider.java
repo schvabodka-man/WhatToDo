@@ -14,6 +14,10 @@ import apps.scvh.com.whattodo.util.imdbApi.ImdbWorker;
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ * ENG class that i need for DI'ing all the stuff
+ * RUS класс который я юзаю для внедрения зависимостей
+ */
 @Module
 public class DaggerImdbProvider {
 
