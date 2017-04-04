@@ -1,56 +1,45 @@
 package apps.scvh.com.whattodo.util;
 
 
-import android.app.Activity;
-import android.content.Context;
-import android.widget.TextView;
+import android.graphics.drawable.Drawable;
 
-import apps.scvh.com.whattodo.R;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.concurrent.Callable;
+
 import apps.scvh.com.whattodo.util.essences.Movie;
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 
 public class UIHandler {
 
-    private Context context;
     private MovieWatchPicker picker;
 
-    public UIHandler(Context context, MovieWatchPicker picker) {
-        this.context = context;
+    public UIHandler(MovieWatchPicker picker) {
         this.picker = picker;
     }
 
-    private void setBestMovie(Observable<Movie> observable) {
-        TextView forWorking; //There goes a dirty hack, hard to explain why i done it in that way
-        Movie movie = observable.blockingFirst();
-        forWorking = (TextView)
-                ((Activity) context).findViewById(R.id.fullText);
-        forWorking.setText(movie.getDescription());
-        forWorking = (TextView)
-                ((Activity) context).findViewById(R.id.year);
-        forWorking.setText(movie.getYear());
-        forWorking = (TextView)
-                ((Activity) context).findViewById(R.id.meter);
-        if (movie.getMetacriticScore() == 0) {
-            forWorking.setText(context.getString(R.string.metascore_na));
-        } else {
-            forWorking.setText(context.getString(R.string.metascore) + movie.getMetacriticScore()
-            ); // yes i know
-        }
-        forWorking = (TextView)
-                ((Activity) context).findViewById(R.id.title);
-        forWorking.setText(movie.getName());
-        forWorking = (TextView)
-                ((Activity) context).findViewById(R.id.actors);
-        forWorking.setText(movie.getActors());
-        forWorking = (TextView)
-                ((Activity) context).findViewById(R.id.awards);
-        forWorking.setText(movie.getAwards());
-        forWorking = (TextView)
-                ((Activity) context).findViewById(R.id.director);
-        forWorking.setText(movie.getDirector());
+    public Observable<Movie> getMovieObservable() {
+        return picker.getMovieObservable();
     }
 
-    public void setMovieFront() {
-        setBestMovie(picker.getMovieObservable());
+    public Observable<Drawable> getPicture(String id) {
+        return Observable.defer(new Callable<ObservableSource<Drawable>>() {
+            @Override
+            public ObservableSource<Drawable> call() throws Exception {
+                InputStream address = null;
+                try {
+                    address = (InputStream) new URL(id).getContent();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Drawable cover = Drawable.createFromStream(address, "coverSrc");
+                return Observable.just(cover);
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 }

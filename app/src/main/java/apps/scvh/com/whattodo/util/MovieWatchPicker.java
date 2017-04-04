@@ -1,5 +1,6 @@
 package apps.scvh.com.whattodo.util;
 
+import java.util.HashSet;
 import java.util.concurrent.Callable;
 
 import apps.scvh.com.whattodo.util.essences.Movie;
@@ -7,6 +8,7 @@ import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMovieListGenerator;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMoviePicker;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbWorker;
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -30,21 +32,16 @@ public class MovieWatchPicker {
     }
 
     Observable<Movie> getMovieObservable() {
-        return Observable.defer(new Callable<Observable<Integer>>() {
+        return Observable.defer(new Callable<Observable<Movie>>() {
             @Override
-            public Observable<Integer> call() throws Exception {
-                return Observable.just(worker.getMovieStats());
+            public Observable<Movie> call() throws Exception {
+                int maxId = worker.getMovieStats();
+                HashSet<Integer> random = listGenerator.getListOfRandomId(NUMBER_OF_MOVIES, maxId);
+                HashSet<Movie> movies = listGenerator.getListOfMovies(random, maxId);
+                Movie bestOne = randomMoviePicker.pickBestMovie(movies);
+                return Observable.just(bestOne);
             }
-        })
-                .subscribeOn(Schedulers.computation())
-                .observeOn(Schedulers.io())
-                .map(maxId -> listGenerator.getListOfRandomId(NUMBER_OF_MOVIES, maxId))
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.computation())
-                .map(indexSet -> listGenerator.getListOfMovies(indexSet, worker.getMovieStats()))
-                .subscribeOn(Schedulers.computation())
-                .observeOn(Schedulers.computation())
-                .map(movieSet -> randomMoviePicker.pickBestMovie(movieSet));
+        }).subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
     }
 
 
