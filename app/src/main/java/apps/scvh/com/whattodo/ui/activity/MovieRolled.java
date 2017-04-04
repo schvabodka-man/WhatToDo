@@ -6,18 +6,19 @@ import android.support.v4.app.FragmentActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.omertron.omdbapi.OmdbApi;
+import javax.inject.Inject;
 
 import apps.scvh.com.whattodo.R;
-import apps.scvh.com.whattodo.util.MovieWatchPicker;
 import apps.scvh.com.whattodo.util.UIHandler;
 import apps.scvh.com.whattodo.util.essences.Movie;
-import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMovieListGenerator;
-import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMoviePicker;
-import apps.scvh.com.whattodo.util.imdbApi.ImdbWorker;
 import io.reactivex.Observable;
 
 public class MovieRolled extends FragmentActivity {
+
+    @Inject
+    public MovieRolled(UIHandler handler) {
+        this.handler = handler;
+    }
 
     private UIHandler handler;
 
@@ -36,10 +37,6 @@ public class MovieRolled extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_rolled);
-        ImdbRandomMoviePicker randomMoviePicker = new ImdbRandomMoviePicker();
-        ImdbWorker worker = new ImdbWorker(this, new OmdbApi());
-        ImdbRandomMovieListGenerator generator = new ImdbRandomMovieListGenerator(this, worker);
-        handler = new UIHandler(new MovieWatchPicker(randomMoviePicker, worker, generator));
         initFields();
         setMovie(handler.getMovieObservable());
 
