@@ -55,6 +55,8 @@ dependencies {
     testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.10'
     compile 'javax.inject:javax.inject:1'
     provided 'javax.annotation:jsr250-api:1.0'
+    compile group: 'com.jakewharton', name: 'butterknife', version: '8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     testCompile 'junit:junit:4.12'
 }
 

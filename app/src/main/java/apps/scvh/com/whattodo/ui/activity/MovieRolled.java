@@ -13,6 +13,8 @@ import apps.scvh.com.whattodo.R;
 import apps.scvh.com.whattodo.util.UIHandler;
 import apps.scvh.com.whattodo.util.di.DaggerInjector;
 import apps.scvh.com.whattodo.util.essences.Movie;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.Observable;
 
 public class MovieRolled extends FragmentActivity {
@@ -21,23 +23,31 @@ public class MovieRolled extends FragmentActivity {
     @Named("UIHandler")
     UIHandler handler;
 
-
     //Heh
-    private TextView title;
-    private TextView fullText;
-    private TextView year;
-    private TextView meter;
-    private TextView director;
-    private TextView actors;
-    private TextView awards;
-    private TextView genre;
-    private ImageView picture;
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.fullText)
+    TextView fullText;
+    @BindView(R.id.year)
+    TextView year;
+    @BindView(R.id.meter)
+    TextView meter;
+    @BindView(R.id.director)
+    TextView director;
+    @BindView(R.id.actors)
+    TextView actors;
+    @BindView(R.id.awards)
+    TextView awards;
+    @BindView(R.id.genre)
+    TextView genre;
+    @BindView(R.id.cover)
+    ImageView picture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_rolled);
-        initFields();
+        ButterKnife.bind(this);
         DaggerInjector injector = new DaggerInjector(this);
         injector.getComponent().inject(this);
         setMovie(handler.getMovieObservable());
@@ -68,17 +78,5 @@ public class MovieRolled extends FragmentActivity {
                 setPicture(handler.getPicture(movie.getPictureId()));
             }
         });
-    }
-
-    private void initFields() {
-        title = (TextView) findViewById(R.id.title);
-        fullText = (TextView) findViewById(R.id.fullText);
-        year = (TextView) findViewById(R.id.year);
-        meter = (TextView) findViewById(R.id.meter);
-        director = (TextView) findViewById(R.id.director);
-        actors = (TextView) findViewById(R.id.actors);
-        awards = (TextView) findViewById(R.id.awards);
-        genre = (TextView) findViewById(R.id.genre);
-        picture = (ImageView) findViewById(R.id.cover);
     }
 }
