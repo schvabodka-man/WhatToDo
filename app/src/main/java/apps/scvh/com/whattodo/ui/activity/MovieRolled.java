@@ -7,23 +7,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import apps.scvh.com.whattodo.R;
 import apps.scvh.com.whattodo.util.UIHandler;
+import apps.scvh.com.whattodo.util.di.DaggerInjector;
 import apps.scvh.com.whattodo.util.essences.Movie;
 import io.reactivex.Observable;
 
 public class MovieRolled extends FragmentActivity {
 
     @Inject
-    public MovieRolled(UIHandler handler) {
-        this.handler = handler;
+    public MovieRolled(@Named("UIHandler") UIHandler handler) {
+        handler = this.handler;
     }
 
     public MovieRolled() {
+        //just zero arg constructor for some dagger purposes
     }
 
     private UIHandler handler;
+
 
     //Heh
     private TextView title;
@@ -41,6 +45,8 @@ public class MovieRolled extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_rolled);
         initFields();
+        DaggerInjector injector = new DaggerInjector(this);
+        injector.getComponent().inject(this);
         setMovie(handler.getMovieObservable());
     }
 

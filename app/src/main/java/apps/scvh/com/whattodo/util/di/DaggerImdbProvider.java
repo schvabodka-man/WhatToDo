@@ -5,6 +5,7 @@ import android.content.Context;
 import com.omertron.omdbapi.OmdbApi;
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import apps.scvh.com.whattodo.util.MovieWatchPicker;
 import apps.scvh.com.whattodo.util.UIHandler;
@@ -18,8 +19,15 @@ import dagger.Provides;
  * ENG class that i need for DI'ing all the stuff
  * RUS класс который я юзаю для внедрения зависимостей
  */
+@Singleton
 @Module
 public class DaggerImdbProvider {
+
+    public DaggerImdbProvider(Context context) {
+        this.context = context;
+    }
+
+    private Context context;
 
     @Provides
     @Named("ImdbRandomMoviePicker")
@@ -29,13 +37,13 @@ public class DaggerImdbProvider {
 
     @Provides
     @Named("ImdbWorker")
-    ImdbWorker provideWorker(@Named("Context") Context context) {
+    ImdbWorker provideWorker() {
         return new ImdbWorker(context, new OmdbApi());
     }
 
     @Provides
     @Named("ListGenerator")
-    ImdbRandomMovieListGenerator provieListGenerator(@Named("Context") Context context, @Named
+    ImdbRandomMovieListGenerator provieListGenerator(@Named
             ("ImdbWorker") ImdbWorker worker) {
         return new ImdbRandomMovieListGenerator(context, worker);
     }
