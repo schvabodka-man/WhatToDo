@@ -18,15 +18,8 @@ import io.reactivex.Observable;
 public class MovieRolled extends FragmentActivity {
 
     @Inject
-    public void injectHandler(@Named("UIHandler") UIHandler handler) {
-        handler = this.handler;
-    }
-
-    public MovieRolled() {
-        //just zero arg constructor for some dagger purposes
-    }
-
-    private UIHandler handler;
+    @Named("UIHandler")
+    UIHandler handler;
 
 
     //Heh
