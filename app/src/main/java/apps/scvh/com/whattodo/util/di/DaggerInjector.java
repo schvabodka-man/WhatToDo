@@ -12,7 +12,7 @@ public class DaggerInjector {
     private MainComponent component;
 
     public DaggerInjector(Context context) {
-        component = DaggerMainComponent.builder().daggerImdbProvider(new DaggerImdbProvider
-                (context)).build();
+        component = DaggerMainComponent.builder().daggerImdbProvider(new DaggerImdbProvider(context)
+        ).build();
     }
 }
