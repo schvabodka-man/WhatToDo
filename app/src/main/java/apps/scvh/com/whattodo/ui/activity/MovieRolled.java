@@ -23,7 +23,7 @@ public class MovieRolled extends FragmentActivity {
     @Named("UIHandler")
     UIHandler handler;
 
-    //Heh
+    //Heh, they're all actually public because butter knife need them to be public, not private
     @BindView(R.id.title)
     TextView title;
     @BindView(R.id.fullText)
