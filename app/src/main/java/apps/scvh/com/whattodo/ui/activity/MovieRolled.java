@@ -27,8 +27,6 @@ public class MovieRolled extends FragmentActivity {
     UIHandler handler;
 
     //Heh, they're all actually public because butter knife need them to be public, not private
-    @BindView(R.id.title)
-    TextView title;
     @BindView(R.id.fullText)
     TextView fullText;
     @BindView(R.id.year)
@@ -65,7 +63,7 @@ public class MovieRolled extends FragmentActivity {
 
     private void setMovie(Observable<Movie> movieObservable) {
         movieObservable.subscribe(movie -> {
-            title.setText(movie.getName());
+            getActionBar().setTitle(movie.getName());
             fullText.setText(movie.getDescription());
             year.setText(movie.getYear());
             if (movie.getMetacriticScore() == 0) {

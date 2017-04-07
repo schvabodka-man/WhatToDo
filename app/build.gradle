@@ -57,6 +57,7 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0'
     compile group: 'com.jakewharton', name: 'butterknife', version: '8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile 'com.github.satyan:sugar:1.4'
     testCompile 'junit:junit:4.12'
 }
 
