@@ -3,6 +3,7 @@ package apps.scvh.com.whattodo.ui.activity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -77,6 +78,7 @@ public class MovieRolled extends FragmentActivity {
             } else {
                 setPicture(handler.getPicture(movie.getPictureId()));
             }
+            findViewById(R.id.progress).setVisibility(View.GONE);
         });
     }
 }

@@ -4,6 +4,12 @@
               android:layout_height="match_parent"
               tools:context=".ui.fragments.Movie">
 
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:indeterminate="true"/>
+
     <ScrollView
         android:id="@+id/container"
         android:layout_width="match_parent"
