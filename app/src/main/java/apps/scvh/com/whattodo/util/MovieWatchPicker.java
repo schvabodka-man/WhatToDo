@@ -22,7 +22,7 @@ public class MovieWatchPicker {
     private ImdbWorker worker;
     private ImdbRandomMovieListGenerator listGenerator;
 
-    private final int NUMBER_OF_MOVIES = 8;
+    private final int NUMBER_OF_MOVIES = 3;
 
     public MovieWatchPicker(ImdbRandomMoviePicker randomMoviePicker, ImdbWorker worker,
                             ImdbRandomMovieListGenerator listGenerator) {

@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding2.view.RxView;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -52,6 +54,9 @@ public class MovieRolled extends FragmentActivity {
         DaggerInjector injector = new DaggerInjector(this);
         injector.getComponent().inject(this);
         setMovie(handler.getMovieObservable());
+        RxView.clicks(findViewById(R.id.redraw)).subscribe(t -> {
+            this.recreate();
+        });
     }
 
     private void setPicture(Observable<Drawable> coverObservable) {
