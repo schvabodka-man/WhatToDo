@@ -6,16 +6,17 @@
     <string name="log_stats">stats</string>
     <string name="log_stats_start">Getting stats</string>
     <string name="log_omdb_api">omdb api</string>
-    <string name="log_id_generation">id generation</string>
-    <string name="log_id_generation_same_id">seems like there are two same id, skipping</string>
+    <string name="log_id_generation">imdbId generation</string>
+    <string name="log_id_generation_same_id">seems like there are two same imdbId, skipping</string>
     <string name="imdb_prefix">tt</string>
     <string name="imdb_leading_zeroes">%07d</string>
     <string name="imdb_na">N/A</string>
     <string name="log_omdb_unknown_imdb_rating">Unknown imdb rating, setting 1</string>
     <string name="log_imdb_score">imdb score is </string>
     <string name="log_null_movie">Movie is null, fallbacking</string>
-    <string name="log_fallback_id">Fallback id is </string>
+    <string name="log_fallback_id">Fallback imdbId is </string>
     <string name="metascore">Metascore:</string>
     <string name="metascore_na">Metascore: N/A</string>
     <string name="next_movie">Next Movie</string>
+    <string name="ignore_this_movie">Ignore Movie</string>
 </resources>

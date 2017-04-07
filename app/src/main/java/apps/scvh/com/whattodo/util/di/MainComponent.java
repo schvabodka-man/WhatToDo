@@ -6,7 +6,7 @@ import apps.scvh.com.whattodo.ui.activity.MovieRolled;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {DaggerImdbProvider.class})
+@Component(modules = {DaggerProvider.class})
 public interface MainComponent {
 
     void inject(MovieRolled movieRolled);

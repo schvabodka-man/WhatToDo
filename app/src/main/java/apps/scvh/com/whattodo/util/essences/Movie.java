@@ -1,19 +1,33 @@
 package apps.scvh.com.whattodo.util.essences;
 
 
-public class Movie implements Comparable<Movie> {
+import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 
-    private int id;
+public class Movie extends SugarRecord implements Comparable<Movie> {
+
+    private int imdbId;
+    @Ignore
     private String name;
+    @Ignore
     private String year;
+    @Ignore
     private double imdbScore;
+    @Ignore
     private int metacriticScore;
+    @Ignore
     private String description;
+    @Ignore
     private String director;
+    @Ignore
     private String awards;
+    @Ignore
     private String actors;
+    @Ignore
     private String runtime;
+    @Ignore
     private String genre;
+    @Ignore
     private String pictureId;
 
     private double finalScore;
@@ -26,12 +40,12 @@ public class Movie implements Comparable<Movie> {
         this.finalScore = finalScore;
     }
 
-    public int getId() {
-        return id;
+    public int getImdbId() {
+        return imdbId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setImdbId(int imdbId) {
+        this.imdbId = imdbId;
     }
 
     public double getImdbScore() {

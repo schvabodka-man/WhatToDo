@@ -8,11 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding2.view.RxView;
+import com.orm.SugarContext;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import apps.scvh.com.whattodo.R;
+import apps.scvh.com.whattodo.util.IgnoringHelper;
 import apps.scvh.com.whattodo.util.UIHandler;
 import apps.scvh.com.whattodo.util.di.DaggerInjector;
 import apps.scvh.com.whattodo.util.essences.Movie;
@@ -25,6 +27,9 @@ public class MovieRolled extends FragmentActivity {
     @Inject
     @Named("UIHandler")
     UIHandler handler;
+    @Inject
+    @Named("Ignore")
+    IgnoringHelper ignoringHelper;
 
     //Heh, they're all actually public because butter knife need them to be public, not private
     @BindView(R.id.fullText)
@@ -44,6 +49,8 @@ public class MovieRolled extends FragmentActivity {
     @BindView(R.id.cover)
     ImageView picture;
 
+    private Movie movieFromObservable; //need for implementing ignoring of movies
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +58,13 @@ public class MovieRolled extends FragmentActivity {
         ButterKnife.bind(this);
         DaggerInjector injector = new DaggerInjector(this);
         injector.getComponent().inject(this);
+        SugarContext.init(this);
         setMovie(handler.getMovieObservable());
         RxView.clicks(findViewById(R.id.redraw)).subscribe(t -> {
             this.recreate();
+        });
+        RxView.clicks(findViewById(R.id.ignore)).subscribe(t -> {
+            ignoringHelper.ignoreMovie(movieFromObservable);
         });
     }
 
@@ -63,6 +74,7 @@ public class MovieRolled extends FragmentActivity {
 
     private void setMovie(Observable<Movie> movieObservable) {
         movieObservable.subscribe(movie -> {
+            movieFromObservable = movie;
             getActionBar().setTitle(movie.getName());
             fullText.setText(movie.getDescription());
             year.setText(movie.getYear());

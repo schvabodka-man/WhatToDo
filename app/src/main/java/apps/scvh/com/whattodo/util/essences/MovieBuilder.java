@@ -28,7 +28,7 @@ public class MovieBuilder {
     }
 
     public MovieBuilder setId(int id) {
-        movie.setId(id);
+        movie.setImdbId(id);
         return this;
     }
 

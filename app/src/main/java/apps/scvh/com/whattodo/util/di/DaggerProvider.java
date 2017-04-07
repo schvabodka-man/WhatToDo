@@ -7,6 +7,7 @@ import com.omertron.omdbapi.OmdbApi;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import apps.scvh.com.whattodo.util.IgnoringHelper;
 import apps.scvh.com.whattodo.util.MovieWatchPicker;
 import apps.scvh.com.whattodo.util.UIHandler;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMovieListGenerator;
@@ -21,9 +22,9 @@ import dagger.Provides;
  */
 @Singleton
 @Module
-public class DaggerImdbProvider {
+public class DaggerProvider {
 
-    public DaggerImdbProvider(Context context) {
+    public DaggerProvider(Context context) {
         this.context = context;
     }
 
@@ -61,5 +62,11 @@ public class DaggerImdbProvider {
                                            ("ListGenerator") ImdbRandomMovieListGenerator
                                            listGenerator) {
         return new MovieWatchPicker(randomMoviePicker, worker, listGenerator);
+    }
+
+    @Provides
+    @Named("Ignore")
+    IgnoringHelper provideIgnoringHelper() {
+        return new IgnoringHelper();
     }
 }
