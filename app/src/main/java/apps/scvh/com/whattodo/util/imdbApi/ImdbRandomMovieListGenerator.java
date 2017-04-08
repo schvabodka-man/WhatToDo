@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import apps.scvh.com.whattodo.R;
+import apps.scvh.com.whattodo.util.IgnoringHelper;
 import apps.scvh.com.whattodo.util.essences.Movie;
 
 
@@ -19,10 +20,13 @@ public class ImdbRandomMovieListGenerator {
 
     private Context context;
     private ImdbWorker imdbWorker;
+    private IgnoringHelper ignoringHelper;
 
-    public ImdbRandomMovieListGenerator(Context context, ImdbWorker imdbWorker) {
+    public ImdbRandomMovieListGenerator(Context context, ImdbWorker imdbWorker, IgnoringHelper
+            ignoringHelper) {
         this.context = context;
         this.imdbWorker = imdbWorker;
+        this.ignoringHelper = ignoringHelper;
     }
 
     /**
@@ -37,12 +41,11 @@ public class ImdbRandomMovieListGenerator {
         Movie movie;
         while (movieListIterator.hasNext()) {
             movie = imdbWorker.getMovie(movieListIterator.next());
-            while (movie.getName() == null) {
+            while (movie.getName() == null || ignoringHelper.isIgnored(movie)) {
                 Log.e(String.valueOf(context.getResources().getString(R.string.log_omdb_api)),
                         String.valueOf(context.getResources().getString(R.string
                                 .log_null_movie)));
-                int newId = fallbackMovie(maxId);
-                movie = imdbWorker.getMovie(newId);
+                movie = imdbWorker.getMovie(fallbackMovie(maxId));
             }
             movies.add(movie);
         }
@@ -85,6 +88,5 @@ public class ImdbRandomMovieListGenerator {
                 .valueOf(newId));
         return newId;
     }
-
 
 }

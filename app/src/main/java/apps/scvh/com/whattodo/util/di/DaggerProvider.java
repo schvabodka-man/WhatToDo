@@ -45,8 +45,9 @@ public class DaggerProvider {
     @Provides
     @Named("ListGenerator")
     ImdbRandomMovieListGenerator provieListGenerator(@Named
-            ("ImdbWorker") ImdbWorker worker) {
-        return new ImdbRandomMovieListGenerator(context, worker);
+                                                             ("ImdbWorker") ImdbWorker worker,
+                                                     @Named("Ignore") IgnoringHelper helper) {
+        return new ImdbRandomMovieListGenerator(context, worker, helper);
     }
 
     @Provides

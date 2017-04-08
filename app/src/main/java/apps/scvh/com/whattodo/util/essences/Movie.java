@@ -153,4 +153,18 @@ public class Movie extends SugarRecord implements Comparable<Movie> {
             return 0;
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.getClass().toString().equals("Movie")) {
+            Movie compare = (Movie) obj;
+            if (compare.getImdbId() == this.imdbId) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
