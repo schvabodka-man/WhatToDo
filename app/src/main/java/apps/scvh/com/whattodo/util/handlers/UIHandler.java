@@ -1,4 +1,4 @@
-package apps.scvh.com.whattodo.util;
+package apps.scvh.com.whattodo.util.handlers;
 
 
 import android.graphics.drawable.Drawable;

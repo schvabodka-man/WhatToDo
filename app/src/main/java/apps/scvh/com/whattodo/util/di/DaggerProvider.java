@@ -7,9 +7,9 @@ import com.omertron.omdbapi.OmdbApi;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import apps.scvh.com.whattodo.util.IgnoringHelper;
-import apps.scvh.com.whattodo.util.MovieWatchPicker;
-import apps.scvh.com.whattodo.util.UIHandler;
+import apps.scvh.com.whattodo.util.handlers.IgnoringHelper;
+import apps.scvh.com.whattodo.util.handlers.MovieWatchPicker;
+import apps.scvh.com.whattodo.util.handlers.UIHandler;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMovieListGenerator;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMoviePicker;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbWorker;

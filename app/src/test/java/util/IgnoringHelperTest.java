@@ -12,8 +12,8 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.concurrent.Callable;
 
-import apps.scvh.com.whattodo.util.IgnoringHelper;
 import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.handlers.IgnoringHelper;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMovieListGenerator;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbWorker;
 import io.reactivex.Observable;

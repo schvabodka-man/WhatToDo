@@ -8,8 +8,8 @@ import java.util.Iterator;
 import java.util.Random;
 
 import apps.scvh.com.whattodo.R;
-import apps.scvh.com.whattodo.util.IgnoringHelper;
 import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.handlers.IgnoringHelper;
 
 
 /**

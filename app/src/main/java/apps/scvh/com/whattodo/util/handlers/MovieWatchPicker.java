@@ -1,4 +1,4 @@
-package apps.scvh.com.whattodo.util;
+package apps.scvh.com.whattodo.util.handlers;
 
 import java.util.HashSet;
 import java.util.concurrent.Callable;
