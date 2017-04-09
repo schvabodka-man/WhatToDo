@@ -19,4 +19,7 @@
     <string name="metascore_na">Metascore: N/A</string>
     <string name="next_movie">Next Movie</string>
     <string name="ignore_this_movie">Ignore Movie</string>
+    <string name="title_activity_ignored_movies">Ignored Movies</string>
+    <string name="menu_item_ignored">Ignored movies</string>
+    <string name="getting_movie">Loading movie</string>
 </resources>

@@ -7,7 +7,6 @@ import com.orm.dsl.Ignore;
 public class Movie extends SugarRecord implements Comparable<Movie> {
 
     private int imdbId;
-    @Ignore
     private String name;
     @Ignore
     private String year;
@@ -17,7 +16,6 @@ public class Movie extends SugarRecord implements Comparable<Movie> {
     private int metacriticScore;
     @Ignore
     private String description;
-    @Ignore
     private String director;
     @Ignore
     private String awards;
@@ -27,7 +25,6 @@ public class Movie extends SugarRecord implements Comparable<Movie> {
     private String runtime;
     @Ignore
     private String genre;
-    @Ignore
     private String pictureId;
 
     private double finalScore;

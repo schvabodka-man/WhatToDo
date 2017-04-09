@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="apps.scvh.com.whattodo">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,13 +13,14 @@
         <activity android:name=".ui.activity.Click">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.MovieRolled"
-            android:theme="@android:style/Theme.Material.Light"
-            android:configChanges="orientation|screenSize">
+            android:configChanges="orientation|screenSize"
+            android:theme="@android:style/Theme.Material.Light">
         </activity>
 
         <meta-data
@@ -32,8 +35,11 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="apps.scvh.com"/>
-    </application>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+        <activity
+            android:name=".ui.activity.IgnoredMovies"
+            android:label="@string/title_activity_ignored_movies">
+        </activity>
+    </application>
 
 </manifest>

@@ -6,6 +6,7 @@ import java.util.concurrent.Callable;
 import apps.scvh.com.whattodo.util.essences.Movie;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class IgnoringHelper {
@@ -30,6 +31,6 @@ public class IgnoringHelper {
             public ObservableSource<List<Movie>> call() throws Exception {
                 return Observable.just(Movie.listAll(Movie.class));
             }
-        }).subscribeOn(Schedulers.newThread());
+        }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
     }
 }

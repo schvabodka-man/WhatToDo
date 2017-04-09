@@ -1,8 +1,11 @@
 package apps.scvh.com.whattodo.ui.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -59,6 +62,7 @@ public class MovieRolled extends FragmentActivity {
         DaggerInjector injector = new DaggerInjector(this);
         injector.getComponent().inject(this);
         SugarContext.init(this);
+        getActionBar().setTitle(getString(R.string.getting_movie));
         setMovie(handler.getMovieObservable());
         RxView.clicks(findViewById(R.id.redraw)).subscribe(t -> {
             this.recreate();
@@ -66,6 +70,24 @@ public class MovieRolled extends FragmentActivity {
         RxView.clicks(findViewById(R.id.ignore)).subscribe(t -> {
             ignoringHelper.ignoreMovie(movieFromObservable);
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.rolled_movie_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.ignored_movies_list_menu:
+                Intent intent = new Intent(this, IgnoredMovies.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void setPicture(Observable<Drawable> coverObservable) {
