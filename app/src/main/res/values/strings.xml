@@ -22,4 +22,5 @@
     <string name="title_activity_ignored_movies">Ignored Movies</string>
     <string name="menu_item_ignored">Ignored movies</string>
     <string name="getting_movie">Loading movie</string>
+    <string name="unignore_movie">Remove</string>
 </resources>

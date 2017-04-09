@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,7 +26,7 @@ public class IgnoredAdapter extends ArrayAdapter<Movie> {
     @Named("UIHandler")
     UIHandler handler;
 
-    public IgnoredAdapter(Context context, List<Movie> movieList) {
+    public IgnoredAdapter(Context context, ArrayList<Movie> movieList) {
         super(context, 0, movieList);
         DaggerInjector injector = new DaggerInjector(context);
         injector.getComponent().inject(this);
@@ -55,4 +55,5 @@ public class IgnoredAdapter extends ArrayAdapter<Movie> {
         }
         return convertView;
     }
+
 }
