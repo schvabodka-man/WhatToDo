@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.view.RxView;
 import com.orm.SugarContext;
@@ -131,8 +132,10 @@ public class MovieRolled extends FragmentActivity {
             visualLoading();
             setMovie(handler.getMovieObservable());
         });
-        RxView.clicks(findViewById(R.id.ignore)).subscribe(t ->
-                ignoringHelper.ignoreMovie(movieFromObservable));
+        RxView.clicks(findViewById(R.id.ignore)).subscribe(t -> {
+            ignoringHelper.ignoreMovie(movieFromObservable);
+            Toast.makeText(this, R.string.movie_ignored, Toast.LENGTH_SHORT).show();
+        });
         RxView.clicks(findViewById(R.id.imdb_button)).subscribe(t -> gotoLinkHandler
                 .gotoMoviePage(movieFromObservable));
     }
