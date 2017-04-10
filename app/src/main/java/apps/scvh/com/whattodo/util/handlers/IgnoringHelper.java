@@ -12,11 +12,13 @@ import io.reactivex.schedulers.Schedulers;
 public class IgnoringHelper {
 
     public void ignoreMovie(Movie movie) {
-        movie.save();
+        Observable.just(movie).subscribeOn(Schedulers.io()).subscribe(getMovie -> movie.save());
+        //i like that
     }
 
     public void unignoreMovie(Movie movie) {
-        movie.delete();
+        Observable.just(movie).subscribeOn(Schedulers.io()).subscribe(getMovie -> movie.delete())
+        ; //i like that
     }
 
     public boolean isIgnored(Movie movie) {

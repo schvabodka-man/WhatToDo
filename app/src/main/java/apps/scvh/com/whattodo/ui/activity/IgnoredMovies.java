@@ -33,6 +33,7 @@ public class IgnoredMovies extends Activity {
 
     private IgnoredAdapter adapter;
     private Context context;
+    private ArrayList<Movie> moviesFromAdapter; //this one for UI
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +45,8 @@ public class IgnoredMovies extends Activity {
         init();
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final int javaInnerClassesIsBad = position; //that's a dirty hack to not making
-                // position final
+            public void onItemClick(AdapterView<?> parent, View view, final int position, final
+            long id) {
                 PopupMenu popupMenu = new PopupMenu(IgnoredMovies.this, view);
                 popupMenu.getMenuInflater().inflate(R.menu.ignored_popup, popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -54,9 +54,9 @@ public class IgnoredMovies extends Activity {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.unignore:
-                                Movie movie = adapter.getItem(javaInnerClassesIsBad);
-                                movie.delete();
-                                adapter.remove(movie);
+                                Movie movie = adapter.getItem(position);
+                                moviesFromAdapter.remove(movie);
+                                helper.unignoreMovie(movie);
                                 adapter.notifyDataSetChanged();
                                 return true;
                             default:
@@ -72,7 +72,8 @@ public class IgnoredMovies extends Activity {
     private void init() {
         context = this;
         helper.getListOfIgnoredMovies().subscribe(movies -> {
-            adapter = new IgnoredAdapter(context, (ArrayList<Movie>) movies);
+            moviesFromAdapter = (ArrayList<Movie>) movies;
+            adapter = new IgnoredAdapter(context, moviesFromAdapter);
             list.setAdapter(adapter);
         });
     }
