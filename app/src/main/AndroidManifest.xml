@@ -9,8 +9,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.Material.Light.NoActionBar.Fullscreen">
-        <activity android:name=".ui.activity.Click">
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.activity.Click"
+            android:theme="@android:style/Theme.Material.Light.NoActionBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -19,8 +21,7 @@
         </activity>
         <activity
             android:name=".ui.activity.MovieRolled"
-            android:configChanges="orientation|screenSize"
-            android:theme="@android:style/Theme.Material.Light">
+            android:configChanges="orientation|screenSize">
         </activity>
 
         <meta-data

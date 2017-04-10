@@ -58,18 +58,10 @@ public class MovieRolled extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_rolled);
-        ButterKnife.bind(this);
-        DaggerInjector injector = new DaggerInjector(this);
-        injector.getComponent().inject(this);
-        SugarContext.init(this);
-        getActionBar().setTitle(getString(R.string.getting_movie));
+        init();
+        visualLoading();
+        setOnClickListeners();
         setMovie(handler.getMovieObservable());
-        RxView.clicks(findViewById(R.id.redraw)).subscribe(t -> {
-            this.recreate();
-        });
-        RxView.clicks(findViewById(R.id.ignore)).subscribe(t -> {
-            ignoringHelper.ignoreMovie(movieFromObservable);
-        });
     }
 
     @Override
@@ -103,12 +95,11 @@ public class MovieRolled extends FragmentActivity {
             if (movie.getMetacriticScore() == 0) {
                 meter.setText(getString(R.string.metascore_na));
             } else {
-                meter.setText(getString(R.string.metascore) + movie.getMetacriticScore()); // yes
-                // i know
+                meter.setText(getString(R.string.metascore) + movie.getMetacriticScore());
             }
-            director.setText(movie.getDirector());
-            actors.setText(movie.getActors());
-            awards.setText(movie.getAwards());
+            director.setText(getString(R.string.director) + movie.getDirector());
+            actors.setText(getString(R.string.actors) + movie.getActors());
+            awards.setText(getString(R.string.awards) + movie.getAwards());
             genre.setText(movie.getGenre());
             if (movie.getPictureId().equals(getString(R.string.imdb_na))) {
                 picture.setBackground(getDrawable(R.mipmap.placeholder));
@@ -117,5 +108,28 @@ public class MovieRolled extends FragmentActivity {
             }
             findViewById(R.id.progress).setVisibility(View.GONE);
         });
+    }
+
+    private void visualLoading() {
+        getActionBar().setTitle(getString(R.string.getting_movie));
+        findViewById(R.id.progress).setVisibility(View.VISIBLE);
+    }
+
+    private void init() {
+        ButterKnife.bind(this);
+        DaggerInjector injector = new DaggerInjector(this);
+        injector.getComponent().inject(this);
+        SugarContext.init(this);
+    }
+
+    private void setOnClickListeners() {
+        RxView.clicks(findViewById(R.id.redraw)).subscribe(t -> {
+            visualLoading();
+            setMovie(handler.getMovieObservable());
+        });
+        RxView.clicks(findViewById(R.id.ignore)).subscribe(t -> {
+            ignoringHelper.ignoreMovie(movieFromObservable);
+        });
+        RxView.clicks(findViewById(R.id.imdb_button)).subscribe();
     }
 }

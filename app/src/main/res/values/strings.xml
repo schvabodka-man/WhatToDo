@@ -23,4 +23,8 @@
     <string name="menu_item_ignored">Ignored movies</string>
     <string name="getting_movie">Loading movie</string>
     <string name="unignore_movie">Remove</string>
+    <string name="actors">Actors:&#160;</string>
+    <string name="awards">Awards:&#160;</string>
+    <string name="director">Director:&#160;</string>
+    <string name="view_on_imdb">View on IMDB</string>
 </resources>
