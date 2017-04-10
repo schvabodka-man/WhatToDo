@@ -1,9 +1,9 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="oval">
-            <corners android:radius="30dp"/>
+            <corners android:radius="@dimen/radius"/>
             <solid android:color="@color/colorAccent"/>
-            <size android:width="150dp" android:height="150dp"/>
+            <size android:width="@dimen/button_size" android:height="@dimen/button_size"/>
         </shape>
     </item>
 </selector>

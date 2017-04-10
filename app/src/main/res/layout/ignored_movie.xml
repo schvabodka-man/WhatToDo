@@ -10,21 +10,27 @@
 
         <ImageView
             android:id="@+id/ignored_covering"
-            android:layout_width="100dp"
-            android:layout_height="100dp"/>
+            android:layout_width="@dimen/small_picture"
+            android:layout_height="@dimen/small_picture"
+            android:paddingEnd="@dimen/small_padding"/>
 
         <TextView
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:id="@+id/ignored_title"
+            android:layout_width="@dimen/ignored_item"
+            android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/ignored_covering"
-            android:id="@+id/ignored_title"/>
+            android:gravity="start"
+            android:paddingTop="@dimen/small_padding"
+            android:textSize="@dimen/big_text"/>
 
         <TextView
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_toEndOf="@+id/ignored_covering"
+            android:id="@+id/ignored_director"
+            android:layout_width="@dimen/ignored_item"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/ignored_title"
-            android:id="@+id/ignored_director"/>
+            android:layout_toEndOf="@+id/ignored_covering"
+            android:gravity="start"
+            android:textSize="@dimen/small_text"/>
 
     </RelativeLayout>
 

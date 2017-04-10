@@ -1,4 +1,13 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="big_text">20sp</dimen>
+    <dimen name="small_text">15sp</dimen>
+    <dimen name="ignored_item">300dp</dimen>
+    <dimen name="small_padding">10dp</dimen>
+    <dimen name="big_padding">30dp</dimen>
+    <dimen name="radius">30dp</dimen>
+    <dimen name="button_size">150dp</dimen>
+    <dimen name="small_picture">100dp</dimen>
+    <dimen name="big_picture">400dp</dimen>
 </resources>
