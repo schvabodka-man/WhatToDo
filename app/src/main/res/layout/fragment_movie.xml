@@ -136,7 +136,6 @@
             <Button
                 android:id="@+id/imdb_button"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:text="@string/view_on_imdb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/ignore"
@@ -145,6 +144,7 @@
                 android:layout_toEndOf="@+id/ignore"
                 android:paddingEnd="10dp"
                 android:paddingStart="10dp"
+                android:text="@string/view_on_imdb"
                 android:textSize="15sp"/>
         </RelativeLayout>
     </ScrollView>

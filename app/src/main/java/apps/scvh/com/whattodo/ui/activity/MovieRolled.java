@@ -19,6 +19,7 @@ import javax.inject.Named;
 import apps.scvh.com.whattodo.R;
 import apps.scvh.com.whattodo.util.di.DaggerInjector;
 import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.handlers.GotoImdbHandler;
 import apps.scvh.com.whattodo.util.handlers.IgnoringHelper;
 import apps.scvh.com.whattodo.util.handlers.UIHandler;
 import butterknife.BindView;
@@ -33,6 +34,9 @@ public class MovieRolled extends FragmentActivity {
     @Inject
     @Named("Ignore")
     IgnoringHelper ignoringHelper;
+    @Inject
+    @Named("ImdbLinker")
+    GotoImdbHandler gotoLinkHandler;
 
     //Heh, they're all actually public because butter knife need them to be public, not private
     @BindView(R.id.fullText)
@@ -127,9 +131,9 @@ public class MovieRolled extends FragmentActivity {
             visualLoading();
             setMovie(handler.getMovieObservable());
         });
-        RxView.clicks(findViewById(R.id.ignore)).subscribe(t -> {
-            ignoringHelper.ignoreMovie(movieFromObservable);
-        });
-        RxView.clicks(findViewById(R.id.imdb_button)).subscribe();
+        RxView.clicks(findViewById(R.id.ignore)).subscribe(t ->
+                ignoringHelper.ignoreMovie(movieFromObservable));
+        RxView.clicks(findViewById(R.id.imdb_button)).subscribe(t -> gotoLinkHandler
+                .gotoMoviePage(movieFromObservable));
     }
 }

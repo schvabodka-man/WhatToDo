@@ -7,6 +7,7 @@ import com.omertron.omdbapi.OmdbApi;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import apps.scvh.com.whattodo.util.handlers.GotoImdbHandler;
 import apps.scvh.com.whattodo.util.handlers.IgnoringHelper;
 import apps.scvh.com.whattodo.util.handlers.MovieWatchPicker;
 import apps.scvh.com.whattodo.util.handlers.UIHandler;
@@ -69,5 +70,11 @@ public class DaggerProvider {
     @Named("Ignore")
     IgnoringHelper provideIgnoringHelper() {
         return new IgnoringHelper();
+    }
+
+    @Provides
+    @Named("ImdbLinker")
+    GotoImdbHandler provideGotoImdbHandler() {
+        return new GotoImdbHandler(context);
     }
 }

@@ -2,6 +2,7 @@
     <string name="app_name">WhatToDo</string>
     <string name="click">Touch!</string>
     <string name="imdb_stats">http://www.imdb.com/stats</string>
+    <string name="imdb_link">http://www.imdb.com/title/tt</string>
     <string name="imdb_css_selector">[cellspacing="2"] tr [align="right"] </string>
     <string name="log_stats">stats</string>
     <string name="log_stats_start">Getting stats</string>
