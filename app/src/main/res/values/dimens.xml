@@ -8,6 +8,7 @@
     <dimen name="big_padding">30dp</dimen>
     <dimen name="radius">30dp</dimen>
     <dimen name="button_size">150dp</dimen>
-    <dimen name="small_picture">100dp</dimen>
-    <dimen name="big_picture">400dp</dimen>
+    <dimen name="small_picture_width">100dp</dimen>
+    <dimen name="small_picture_height">175dp</dimen>
+    <dimen name="big_picture">500dp</dimen>
 </resources>

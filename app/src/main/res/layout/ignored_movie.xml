@@ -10,8 +10,8 @@
 
         <ImageView
             android:id="@+id/ignored_covering"
-            android:layout_width="@dimen/small_picture"
-            android:layout_height="@dimen/small_picture"
+            android:layout_width="@dimen/small_picture_width"
+            android:layout_height="@dimen/small_picture_height"
             android:paddingEnd="@dimen/small_padding"/>
 
         <TextView
