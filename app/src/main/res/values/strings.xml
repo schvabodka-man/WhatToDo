@@ -18,8 +18,8 @@
     <string name="log_fallback_id">Fallback imdbId is </string>
     <string name="metascore">Metascore:</string>
     <string name="metascore_na">Metascore: N/A</string>
-    <string name="next_movie">Next Movie</string>
-    <string name="ignore_this_movie">Ignore Movie</string>
+    <string name="next_movie">NEXT MOVIE</string>
+    <string name="ignore_this_movie">IGNORE MOVIE</string>
     <string name="title_activity_ignored_movies">Ignored Movies</string>
     <string name="menu_item_ignored">Ignored movies</string>
     <string name="getting_movie">Loading movie</string>
@@ -27,6 +27,6 @@
     <string name="actors">Actors:&#160;</string>
     <string name="awards">Awards:&#160;</string>
     <string name="director">Director:&#160;</string>
-    <string name="view_on_imdb">View on IMDB</string>
+    <string name="view_on_imdb">VIEW ON IMDB</string>
     <string name="movie_ignored">Movie was ignored</string>
 </resources>
