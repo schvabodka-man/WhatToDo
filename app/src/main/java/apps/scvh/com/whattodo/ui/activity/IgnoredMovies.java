@@ -43,30 +43,7 @@ public class IgnoredMovies extends Activity {
         DaggerInjector injector = new DaggerInjector(this);
         injector.getComponent().inject(this);
         init();
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, final View view, final int position,
-                                    final
-            long id) {
-                PopupMenu popupMenu = new PopupMenu(IgnoredMovies.this, view);
-                popupMenu.getMenuInflater().inflate(R.menu.ignored_popup, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.unignore:
-                                helper.unignoreMovie(moviesFromAdapter.get(position));
-                                moviesFromAdapter.remove(position);
-                                adapter.notifyDataSetChanged();
-                                return true;
-                            default:
-                                return false;
-                        }
-                    }
-                });
-                popupMenu.show();
-            }
-        });
+        setOnClickListeners();
     }
 
     private void init() {
@@ -78,4 +55,34 @@ public class IgnoredMovies extends Activity {
         });
     }
 
+    private void setOnClickListeners() {
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view, final int position,
+                                    final
+                                    long id) {
+                PopupMenu popupMenu = new PopupMenu(IgnoredMovies.this, view);
+                popupMenu.getMenuInflater().inflate(R.menu.ignored_popup, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.unignore:
+                                return removeMovie(position);
+                            default:
+                                return false;
+                        }
+                    }
+                });
+                popupMenu.show();
+            }
+        });
+    }
+
+    private boolean removeMovie(int positionOfMovie) {
+        helper.unignoreMovie(moviesFromAdapter.get(positionOfMovie));
+        moviesFromAdapter.remove(positionOfMovie);
+        adapter.notifyDataSetChanged();
+        return true;
+    }
 }
