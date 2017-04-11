@@ -45,7 +45,8 @@ public class IgnoredMovies extends Activity {
         init();
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, final int position, final
+            public void onItemClick(AdapterView<?> parent, final View view, final int position,
+                                    final
             long id) {
                 PopupMenu popupMenu = new PopupMenu(IgnoredMovies.this, view);
                 popupMenu.getMenuInflater().inflate(R.menu.ignored_popup, popupMenu.getMenu());
@@ -54,9 +55,8 @@ public class IgnoredMovies extends Activity {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.unignore:
-                                Movie movie = adapter.getItem(position);
-                                moviesFromAdapter.remove(movie);
-                                helper.unignoreMovie(movie);
+                                helper.unignoreMovie(moviesFromAdapter.get(position));
+                                moviesFromAdapter.remove(position);
                                 adapter.notifyDataSetChanged();
                                 return true;
                             default:
