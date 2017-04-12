@@ -14,6 +14,10 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * ENG class i'm using for simly going to imdb page of movie
+ * RUS класс который я юзаю чтобы открывать ссылки на кино в браузере
+ */
 public class GotoImdbHandler {
 
     private Context context;

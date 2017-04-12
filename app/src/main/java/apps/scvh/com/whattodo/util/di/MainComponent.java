@@ -7,6 +7,10 @@ import apps.scvh.com.whattodo.ui.activity.IgnoredMovies;
 import apps.scvh.com.whattodo.ui.activity.MovieRolled;
 import dagger.Component;
 
+/**
+ * ENG interface for DI. Injecting with inject
+ * RUS интерфейс нужный для инжектов. метод inject собственно инжектит
+ */
 @Singleton
 @Component(modules = {DaggerProvider.class})
 public interface MainComponent {

@@ -27,6 +27,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
 
+/**
+ * The type Movie rolled.
+ */
 public class MovieRolled extends FragmentActivity {
 
     @Inject

@@ -20,6 +20,10 @@ import apps.scvh.com.whattodo.util.essences.Movie;
 import apps.scvh.com.whattodo.util.handlers.UIHandler;
 
 
+/**
+ * ENG adapter need for displaying ignored movies
+ * RUS адаптер нужный мне чтобы показать заигноренные кинчики
+ */
 public class IgnoredAdapter extends ArrayAdapter<Movie> {
 
     @Inject

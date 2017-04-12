@@ -9,6 +9,10 @@ import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * ENG class used for SQL operations with ignored movies
+ * RUS класс который я юзаю чтобы игнорить фильмы
+ */
 public class IgnoringHelper {
 
     public void ignoreMovie(Movie movie) {
