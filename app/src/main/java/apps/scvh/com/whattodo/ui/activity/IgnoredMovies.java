@@ -3,9 +3,6 @@ package apps.scvh.com.whattodo.ui.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 
@@ -56,26 +53,18 @@ public class IgnoredMovies extends Activity {
     }
 
     private void setOnClickListeners() {
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, final View view, final int position,
-                                    final
-                                    long id) {
-                PopupMenu popupMenu = new PopupMenu(IgnoredMovies.this, view);
-                popupMenu.getMenuInflater().inflate(R.menu.ignored_popup, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.unignore:
-                                return removeMovie(position);
-                            default:
-                                return false;
-                        }
-                    }
-                });
-                popupMenu.show();
-            }
+        list.setOnItemClickListener((parent, view, position, id) -> {
+            PopupMenu popupMenu = new PopupMenu(IgnoredMovies.this, view);
+            popupMenu.getMenuInflater().inflate(R.menu.ignored_popup, popupMenu.getMenu());
+            popupMenu.setOnMenuItemClickListener(item -> {
+                switch (item.getItemId()) {
+                    case R.id.unignore:
+                        return removeMovie(position);
+                    default:
+                        return false;
+                }
+            });
+            popupMenu.show();
         });
     }
 

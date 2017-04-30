@@ -32,8 +32,8 @@ android {
         exclude 'META-INF/LGPL2.1'
     }
     compileOptions {
-        targetCompatibility 1.7
-        sourceCompatibility 1.7
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 }
 

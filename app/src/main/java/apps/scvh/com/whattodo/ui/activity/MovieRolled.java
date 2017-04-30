@@ -1,12 +1,12 @@
 package apps.scvh.com.whattodo.ui.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +59,8 @@ public class MovieRolled extends FragmentActivity {
     TextView genre;
     @BindView(R.id.cover)
     ImageView picture;
+
+    private ProgressDialog dialog;
 
     private Movie movieFromObservable; //need for implementing ignoring of movies
 
@@ -114,13 +116,16 @@ public class MovieRolled extends FragmentActivity {
             } else {
                 setPicture(handler.getPicture(movie.getPictureId()));
             }
-            findViewById(R.id.progress).setVisibility(View.GONE);
+            dialog.dismiss();
         });
     }
 
     private void visualLoading() {
         getActionBar().setTitle(getString(R.string.getting_movie));
-        findViewById(R.id.progress).setVisibility(View.VISIBLE);
+        dialog = new ProgressDialog(this);
+        dialog.setTitle(getString(R.string.loading));
+        dialog.setMessage(getString(R.string.please_wait));
+        dialog.show();
     }
 
     private void init() {

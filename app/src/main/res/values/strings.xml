@@ -30,4 +30,6 @@
     <string name="view_on_imdb">VIEW ON IMDB</string>
     <string name="movie_ignored">Movie was ignored</string>
     <string name="no_internet">No Internet connection</string>
+    <string name="loading">Loading</string>
+    <string name="please_wait">Please Wait…</string>
 </resources>
