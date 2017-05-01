@@ -121,7 +121,6 @@ public class MovieRolled extends FragmentActivity {
     }
 
     private void visualLoading() {
-        getActionBar().setTitle(getString(R.string.getting_movie));
         dialog = new ProgressDialog(this);
         dialog.setTitle(getString(R.string.loading));
         dialog.setMessage(getString(R.string.please_wait));
