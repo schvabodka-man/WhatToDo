@@ -99,7 +99,9 @@ public class ImdbWorker {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        int movieNumber = Integer.parseInt(numberOfMovies.get(28).text().replace(",", ""));
+        //there goes a magick number, yep really. If someone's reading this you may know that
+        // it's really bad idea, but i still don't have alternative
+        int movieNumber = Integer.parseInt(numberOfMovies.get(0).text().replace(",", ""));
         Log.d(String.valueOf(context.getResources().getText(R.string.log_stats)), String.valueOf
                 (movieNumber));
         return movieNumber;
