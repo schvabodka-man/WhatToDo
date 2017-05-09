@@ -13,9 +13,9 @@ import java.util.HashSet;
 import java.util.concurrent.Callable;
 
 import apps.scvh.com.whattodo.util.essences.Movie;
-import apps.scvh.com.whattodo.util.handlers.IgnoringHelper;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMovieListGenerator;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbWorker;
+import apps.scvh.com.whattodo.util.workers.IgnoringHelper;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.schedulers.Schedulers;

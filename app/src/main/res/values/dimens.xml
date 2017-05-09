@@ -9,6 +9,6 @@
     <dimen name="radius">30dp</dimen>
     <dimen name="button_size">150dp</dimen>
     <dimen name="small_picture_width">100dp</dimen>
-    <dimen name="small_picture_height">175dp</dimen>
-    <dimen name="big_picture">500dp</dimen>
+    <dimen name="small_picture_height">150dp</dimen>
+    <dimen name="big_picture">300dp</dimen>
 </resources>

@@ -9,7 +9,7 @@ import java.util.Random;
 
 import apps.scvh.com.whattodo.R;
 import apps.scvh.com.whattodo.util.essences.Movie;
-import apps.scvh.com.whattodo.util.handlers.IgnoringHelper;
+import apps.scvh.com.whattodo.util.workers.IgnoringHelper;
 
 
 /**

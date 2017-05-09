@@ -7,13 +7,13 @@ import com.omertron.omdbapi.OmdbApi;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import apps.scvh.com.whattodo.util.handlers.GotoImdbHandler;
-import apps.scvh.com.whattodo.util.handlers.IgnoringHelper;
-import apps.scvh.com.whattodo.util.handlers.MovieWatchPicker;
-import apps.scvh.com.whattodo.util.handlers.UIHandler;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMovieListGenerator;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMoviePicker;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbWorker;
+import apps.scvh.com.whattodo.util.workers.GotoImdb;
+import apps.scvh.com.whattodo.util.workers.IgnoringHelper;
+import apps.scvh.com.whattodo.util.workers.MovieWatchPicker;
+import apps.scvh.com.whattodo.util.workers.UIHandler;
 import dagger.Module;
 import dagger.Provides;
 
@@ -74,7 +74,7 @@ public class DaggerProvider {
 
     @Provides
     @Named("ImdbLinker")
-    GotoImdbHandler provideGotoImdbHandler() {
-        return new GotoImdbHandler(context);
+    GotoImdb provideGotoImdbHandler() {
+        return new GotoImdb(context);
     }
 }

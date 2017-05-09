@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,9 +21,9 @@ import javax.inject.Named;
 import apps.scvh.com.whattodo.R;
 import apps.scvh.com.whattodo.util.di.DaggerInjector;
 import apps.scvh.com.whattodo.util.essences.Movie;
-import apps.scvh.com.whattodo.util.handlers.GotoImdbHandler;
-import apps.scvh.com.whattodo.util.handlers.IgnoringHelper;
-import apps.scvh.com.whattodo.util.handlers.UIHandler;
+import apps.scvh.com.whattodo.util.workers.GotoImdb;
+import apps.scvh.com.whattodo.util.workers.IgnoringHelper;
+import apps.scvh.com.whattodo.util.workers.UIHandler;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
@@ -40,7 +41,7 @@ public class MovieRolled extends FragmentActivity {
     IgnoringHelper ignoringHelper;
     @Inject
     @Named("ImdbLinker")
-    GotoImdbHandler gotoLinkHandler;
+    GotoImdb gotoLinkHandler;
 
     //Heh, they're all actually public because butter knife need them to be public, not private
     @BindView(R.id.fullText)
@@ -112,7 +113,7 @@ public class MovieRolled extends FragmentActivity {
             awards.setText(getString(R.string.awards) + movie.getAwards());
             genre.setText(movie.getGenre());
             if (movie.getPictureId().equals(getString(R.string.imdb_na))) {
-                picture.setBackground(getDrawable(R.mipmap.placeholder));
+                picture.setVisibility(View.GONE);
             } else {
                 setPicture(handler.getPicture(movie.getPictureId()));
             }

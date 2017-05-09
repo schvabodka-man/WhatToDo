@@ -1,4 +1,4 @@
-package apps.scvh.com.whattodo.util.handlers;
+package apps.scvh.com.whattodo.util.workers;
 
 
 import android.content.Context;
@@ -18,11 +18,11 @@ import io.reactivex.schedulers.Schedulers;
  * ENG class i'm using for simly going to imdb page of movie
  * RUS класс который я юзаю чтобы открывать ссылки на кино в браузере
  */
-public class GotoImdbHandler {
+public class GotoImdb {
 
     private Context context;
 
-    public GotoImdbHandler(Context context) {
+    public GotoImdb(Context context) {
         this.context = context;
     }
 

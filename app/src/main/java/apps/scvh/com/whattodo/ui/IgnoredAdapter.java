@@ -17,7 +17,7 @@ import javax.inject.Named;
 import apps.scvh.com.whattodo.R;
 import apps.scvh.com.whattodo.util.di.DaggerInjector;
 import apps.scvh.com.whattodo.util.essences.Movie;
-import apps.scvh.com.whattodo.util.handlers.UIHandler;
+import apps.scvh.com.whattodo.util.workers.UIHandler;
 
 
 /**
@@ -51,7 +51,7 @@ public class IgnoredAdapter extends ArrayAdapter<Movie> {
         title.setText(movie.getName());
         director.setText(movie.getDirector());
         if (movie.getPictureId().equals("N/A")) {
-            cover.setBackground(getContext().getDrawable(R.mipmap.placeholder));
+            cover.setVisibility(View.INVISIBLE);
         } else {
             handler.getPicture(movie.getPictureId()).subscribe(drawable -> {
                 cover.setBackground(drawable);
