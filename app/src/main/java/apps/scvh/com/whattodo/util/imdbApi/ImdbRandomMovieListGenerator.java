@@ -41,7 +41,8 @@ public class ImdbRandomMovieListGenerator {
         Movie movie;
         while (movieListIterator.hasNext()) {
             movie = imdbWorker.getMovie(movieListIterator.next());
-            while (movie.getName() == null || ignoringHelper.isIgnored(movie)) {
+            while (movie.getName() == null || ignoringHelper.isIgnored(movie) || movie.getName()
+                    .contains(context.getString(R.string.episode_ignored))) {
                 Log.e(String.valueOf(context.getResources().getString(R.string.log_omdb_api)),
                         String.valueOf(context.getResources().getString(R.string
                                 .log_null_movie)));
