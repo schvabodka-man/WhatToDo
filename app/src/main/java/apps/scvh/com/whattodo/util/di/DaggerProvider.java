@@ -1,6 +1,7 @@
 package apps.scvh.com.whattodo.util.di;
 
 import android.content.Context;
+import android.preference.PreferenceManager;
 
 import com.omertron.omdbapi.OmdbApi;
 
@@ -10,6 +11,7 @@ import javax.inject.Singleton;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMovieListGenerator;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMoviePicker;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbWorker;
+import apps.scvh.com.whattodo.util.workers.Filterer;
 import apps.scvh.com.whattodo.util.workers.GotoImdb;
 import apps.scvh.com.whattodo.util.workers.IgnoringHelper;
 import apps.scvh.com.whattodo.util.workers.MovieWatchPicker;
@@ -47,8 +49,9 @@ public class DaggerProvider {
     @Named("ListGenerator")
     ImdbRandomMovieListGenerator provieListGenerator(@Named
                                                              ("ImdbWorker") ImdbWorker worker,
-                                                     @Named("Ignore") IgnoringHelper helper) {
-        return new ImdbRandomMovieListGenerator(context, worker, helper);
+                                                     @Named("Ignore") IgnoringHelper helper,
+                                                     @Named("Filterer") Filterer filterer) {
+        return new ImdbRandomMovieListGenerator(context, worker, helper, filterer);
     }
 
     @Provides
@@ -76,5 +79,11 @@ public class DaggerProvider {
     @Named("ImdbLinker")
     GotoImdb provideGotoImdbHandler() {
         return new GotoImdb(context);
+    }
+
+    @Provides
+    @Named("Filterer")
+    Filterer provideFilterer() {
+        return new Filterer(PreferenceManager.getDefaultSharedPreferences(context), context);
     }
 }

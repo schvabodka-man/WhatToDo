@@ -16,8 +16,8 @@
     <string name="log_imdb_score">imdb score is </string>
     <string name="log_null_movie">Movie is null, fallbacking</string>
     <string name="log_fallback_id">Fallback imdbId is </string>
-    <string name="metascore">Metascore:</string>
-    <string name="metascore_na">Metascore: N/A</string>
+    <string name="metascore">Score:</string>
+    <string name="metascore_na">Score: N/A</string>
     <string name="next_movie">NEXT MOVIE</string>
     <string name="ignore_this_movie">IGNORE MOVIE</string>
     <string name="title_activity_ignored_movies">Ignored Movies</string>
@@ -33,6 +33,7 @@
     <string name="loading">Loading</string>
     <string name="please_wait">Please Wait…</string>
     <string name="episode_ignored">Episode #</string>
+    <string name="dupe_ignored">#DUPE#</string>
     <string name="title_activity_settings">Settings</string>
     <string name="filters_category">Filters</string>
     <string name="only_with_pic">Only with pictures</string>
@@ -41,4 +42,9 @@
     <string name="only_with_pic_prefs_key">pics</string>
     <string name="only_with_score_prefs_key">score</string>
     <string name="only_with_awards_prefs_key">awards</string>
+    <string name="ignore">Ignored</string>
+    <string name="by_pic">By picture</string>
+    <string name="by_award">By award</string>
+    <string name="by_score">By score</string>
+    <string name="slower_warning">Search can be a lot slower!</string>
 </resources>

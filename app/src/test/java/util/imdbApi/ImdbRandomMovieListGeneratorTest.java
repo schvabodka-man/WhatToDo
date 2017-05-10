@@ -2,6 +2,7 @@ package util.imdbApi;
 
 
 import android.app.Application;
+import android.preference.PreferenceManager;
 
 import com.omertron.omdbapi.OmdbApi;
 
@@ -14,6 +15,7 @@ import java.util.HashSet;
 import apps.scvh.com.whattodo.util.essences.Movie;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMovieListGenerator;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbWorker;
+import apps.scvh.com.whattodo.util.workers.Filterer;
 import apps.scvh.com.whattodo.util.workers.IgnoringHelper;
 
 public class ImdbRandomMovieListGeneratorTest extends Application {
@@ -22,12 +24,14 @@ public class ImdbRandomMovieListGeneratorTest extends Application {
     private IgnoringHelper helper;
     private ImdbRandomMovieListGenerator listGenerator;
     private ImdbWorker worker;
+    private Filterer filterer;
 
 
     public ImdbRandomMovieListGeneratorTest() {
         helper = new IgnoringHelper();
         worker = new ImdbWorker(this, new OmdbApi());
-        listGenerator = new ImdbRandomMovieListGenerator(this, worker, helper);
+        filterer = new Filterer(PreferenceManager.getDefaultSharedPreferences(this), this);
+        listGenerator = new ImdbRandomMovieListGenerator(this, worker, helper, filterer);
     }
 
     @Test

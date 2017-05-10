@@ -9,6 +9,7 @@ import java.util.Random;
 
 import apps.scvh.com.whattodo.R;
 import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.workers.Filterer;
 import apps.scvh.com.whattodo.util.workers.IgnoringHelper;
 
 
@@ -21,12 +22,14 @@ public class ImdbRandomMovieListGenerator {
     private Context context;
     private ImdbWorker imdbWorker;
     private IgnoringHelper ignoringHelper;
+    private Filterer filterer;
 
     public ImdbRandomMovieListGenerator(Context context, ImdbWorker imdbWorker, IgnoringHelper
-            ignoringHelper) {
+            ignoringHelper, Filterer filterer) {
         this.context = context;
         this.imdbWorker = imdbWorker;
         this.ignoringHelper = ignoringHelper;
+        this.filterer = filterer;
     }
 
     /**
@@ -42,7 +45,9 @@ public class ImdbRandomMovieListGenerator {
         while (movieListIterator.hasNext()) {
             movie = imdbWorker.getMovie(movieListIterator.next());
             while (movie.getName() == null || ignoringHelper.isIgnored(movie) || movie.getName()
-                    .contains(context.getString(R.string.episode_ignored))) {
+                    .contains(context.getString(R.string.episode_ignored)) || movie.getName()
+                    .contains(context.getString(R.string.dupe_ignored)) || filterer.isFiltered
+                    (movie)) {
                 Log.e(String.valueOf(context.getResources().getString(R.string.log_omdb_api)),
                         String.valueOf(context.getResources().getString(R.string
                                 .log_null_movie)));

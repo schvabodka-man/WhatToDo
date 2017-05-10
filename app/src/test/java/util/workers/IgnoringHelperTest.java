@@ -2,6 +2,7 @@ package util.workers;
 
 
 import android.app.Application;
+import android.preference.PreferenceManager;
 
 import com.omertron.omdbapi.OmdbApi;
 
@@ -15,6 +16,7 @@ import java.util.concurrent.Callable;
 import apps.scvh.com.whattodo.util.essences.Movie;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMovieListGenerator;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbWorker;
+import apps.scvh.com.whattodo.util.workers.Filterer;
 import apps.scvh.com.whattodo.util.workers.IgnoringHelper;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -26,12 +28,14 @@ public class IgnoringHelperTest extends Application {
     private IgnoringHelper helper;
     private ImdbRandomMovieListGenerator listGenerator;
     private ImdbWorker worker;
+    private Filterer filterer;
 
 
     public IgnoringHelperTest() {
         helper = new IgnoringHelper();
         worker = new ImdbWorker(this, new OmdbApi());
-        listGenerator = new ImdbRandomMovieListGenerator(this, worker, helper);
+        filterer = new Filterer(PreferenceManager.getDefaultSharedPreferences(this), this);
+        listGenerator = new ImdbRandomMovieListGenerator(this, worker, helper, filterer);
     }
 
     @Test
