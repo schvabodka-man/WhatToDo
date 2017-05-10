@@ -2,13 +2,13 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_ignored_movies"
+    android:id="@+id/activity_settings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="apps.scvh.com.whattodo.ui.activity.IgnoredMovies">
+    tools:context="apps.scvh.com.whattodo.ui.activity.Settings">
 
     <ListView
-        android:id="@+id/ignored_list"
+        android:id="@+id/android:list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent"/>
 </RelativeLayout>

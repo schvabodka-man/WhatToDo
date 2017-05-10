@@ -10,5 +10,5 @@
     <dimen name="button_size">150dp</dimen>
     <dimen name="small_picture_width">100dp</dimen>
     <dimen name="small_picture_height">150dp</dimen>
-    <dimen name="big_picture">250dp</dimen>
+    <dimen name="big_picture">320dp</dimen>
 </resources>

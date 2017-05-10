@@ -25,6 +25,15 @@
             android:configChanges="orientation|screenSize">
         </activity>
 
+        <activity
+            android:name=".ui.activity.IgnoredMovies"
+            android:label="@string/title_activity_ignored_movies">
+        </activity>
+
+        <activity
+            android:name=".ui.activity.Settings">
+        </activity>
+
         <meta-data
             android:name="DATABASE"
             android:value="ignored_movies.db"/>
@@ -38,10 +47,7 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="apps.scvh.com"/>
 
-        <activity
-            android:name=".ui.activity.IgnoredMovies"
-            android:label="@string/title_activity_ignored_movies">
-        </activity>
+
     </application>
 
 </manifest>

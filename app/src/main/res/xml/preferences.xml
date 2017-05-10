@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/filters_category">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/only_with_pic_prefs_key"
+            android:textSize="@dimen/small_text"
+            android:title="@string/only_with_pic"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/only_with_score_prefs_key"
+            android:textSize="@dimen/small_text"
+            android:title="@string/only_with_score"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/only_with_awards_prefs_key"
+            android:textSize="@dimen/small_text"
+            android:title="@string/only_with_awards"/>
+    </PreferenceCategory>
+</PreferenceScreen>

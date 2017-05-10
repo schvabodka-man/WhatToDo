@@ -88,6 +88,10 @@ public class MovieRolled extends FragmentActivity {
                 Intent intent = new Intent(this, IgnoredMovies.class);
                 startActivity(intent);
                 return true;
+            case R.id.settings_menu:
+                Intent settings = new Intent(this, Settings.class);
+                startActivity(settings);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -115,6 +119,7 @@ public class MovieRolled extends FragmentActivity {
             if (movie.getPictureId().equals(getString(R.string.imdb_na))) {
                 picture.setVisibility(View.GONE);
             } else {
+                picture.setVisibility(View.VISIBLE);
                 setPicture(handler.getPicture(movie.getPictureId()));
             }
             dialog.dismiss();

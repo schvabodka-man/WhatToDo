@@ -33,4 +33,12 @@
     <string name="loading">Loading</string>
     <string name="please_wait">Please Wait…</string>
     <string name="episode_ignored">Episode #</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="filters_category">Filters</string>
+    <string name="only_with_pic">Only with pictures</string>
+    <string name="only_with_score">Only with score</string>
+    <string name="only_with_awards">Only with awards</string>
+    <string name="only_with_pic_prefs_key">pics</string>
+    <string name="only_with_score_prefs_key">score</string>
+    <string name="only_with_awards_prefs_key">awards</string>
 </resources>
