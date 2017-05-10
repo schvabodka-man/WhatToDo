@@ -98,7 +98,8 @@ public class MovieRolled extends FragmentActivity {
     }
 
     private void setPicture(Observable<Drawable> coverObservable) {
-        coverObservable.subscribe(cover -> picture.setBackground(cover));
+        coverObservable.subscribe(cover ->
+                picture.setBackground(cover));
     }
 
     private void setMovie(Observable<Movie> movieObservable) {
@@ -128,6 +129,11 @@ public class MovieRolled extends FragmentActivity {
 
     private void visualLoading() {
         dialog = new ProgressDialog(this);
+        dialog.setOnCancelListener(dialog1 -> {
+            if (this.getActionBar().getTitle().equals(this.getString(R.string.app_name))) {
+                finish();
+            }
+        });
         dialog.setTitle(getString(R.string.loading));
         dialog.setMessage(getString(R.string.please_wait));
         dialog.show();
