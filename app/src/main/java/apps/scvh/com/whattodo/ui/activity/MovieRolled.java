@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,7 @@ import apps.scvh.com.whattodo.util.workers.UIHandler;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * The type Movie rolled.
@@ -60,6 +63,12 @@ public class MovieRolled extends FragmentActivity {
     TextView genre;
     @BindView(R.id.cover)
     ImageView picture;
+    @BindView(R.id.redraw)
+    Button redraw;
+    @BindView(R.id.ignore)
+    Button ignore;
+    @BindView(R.id.imdb_button)
+    Button imdbButton;
 
     private ProgressDialog dialog;
 
@@ -123,15 +132,29 @@ public class MovieRolled extends FragmentActivity {
                 picture.setVisibility(View.VISIBLE);
                 setPicture(handler.getPicture(movie.getPictureId()));
             }
+            redraw.setVisibility(View.VISIBLE);
+            imdbButton.setVisibility(View.VISIBLE);
+            ignore.setVisibility(View.VISIBLE);
             dialog.dismiss();
         });
     }
 
     private void visualLoading() {
+        redraw.setVisibility(View.INVISIBLE); //this and next invisible buttons is just for
+        // beautifying loading
+        imdbButton.setVisibility(View.INVISIBLE);
+        ignore.setVisibility(View.INVISIBLE);
         dialog = new ProgressDialog(this);
         dialog.setOnCancelListener(dialog1 -> {
             if (this.getActionBar().getTitle().equals(this.getString(R.string.app_name))) {
                 finish();
+            } else {
+                try {
+                    Schedulers.computation().shutdown();
+                    Schedulers.io().shutdown();
+                } catch (Exception exception) {
+                    Log.i("i m ignoring", "this");
+                }
             }
         });
         dialog.setTitle(getString(R.string.loading));
@@ -147,15 +170,18 @@ public class MovieRolled extends FragmentActivity {
     }
 
     private void setOnClickListeners() {
-        RxView.clicks(findViewById(R.id.redraw)).subscribe(t -> {
+        RxView.clicks(redraw).subscribe(t -> {
             visualLoading();
             setMovie(handler.getMovieObservable());
+            redraw.setVisibility(View.VISIBLE);
+            imdbButton.setVisibility(View.VISIBLE);
+            ignore.setVisibility(View.VISIBLE);
         });
-        RxView.clicks(findViewById(R.id.ignore)).subscribe(t -> {
+        RxView.clicks(ignore).subscribe(t -> {
             ignoringHelper.ignoreMovie(movieFromObservable);
             Toast.makeText(this, R.string.movie_ignored, Toast.LENGTH_SHORT).show();
         });
-        RxView.clicks(findViewById(R.id.imdb_button)).subscribe(t -> gotoLinkHandler
+        RxView.clicks(imdbButton).subscribe(t -> gotoLinkHandler
                 .gotoMoviePage(movieFromObservable));
     }
 }
