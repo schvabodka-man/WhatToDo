@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +28,6 @@ import apps.scvh.com.whattodo.util.workers.UIHandler;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * The type Movie rolled.
@@ -74,6 +72,8 @@ public class MovieRolled extends FragmentActivity {
 
     private Movie movieFromObservable; //need for implementing ignoring of movies
 
+    private boolean isMovieLoadingIgnored;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +81,7 @@ public class MovieRolled extends FragmentActivity {
         init();
         visualLoading();
         setOnClickListeners();
+        isMovieLoadingIgnored = false;
         setMovie(handler.getMovieObservable());
     }
 
@@ -113,29 +114,31 @@ public class MovieRolled extends FragmentActivity {
 
     private void setMovie(Observable<Movie> movieObservable) {
         movieObservable.subscribe(movie -> {
-            movieFromObservable = movie;
-            getActionBar().setTitle(movie.getName());
-            fullText.setText(movie.getDescription());
-            year.setText(movie.getYear());
-            if (movie.getMetacriticScore() == 0) {
-                meter.setText(getString(R.string.metascore_na));
-            } else {
-                meter.setText(getString(R.string.metascore) + movie.getMetacriticScore());
+            if (!isMovieLoadingIgnored) {
+                movieFromObservable = movie;
+                getActionBar().setTitle(movie.getName());
+                fullText.setText(movie.getDescription());
+                year.setText(movie.getYear());
+                if (movie.getMetacriticScore() == 0) {
+                    meter.setText(getString(R.string.metascore_na));
+                } else {
+                    meter.setText(getString(R.string.metascore) + movie.getMetacriticScore());
+                }
+                director.setText(getString(R.string.director) + movie.getDirector());
+                actors.setText(getString(R.string.actors) + movie.getActors());
+                awards.setText(getString(R.string.awards) + movie.getAwards());
+                genre.setText(movie.getGenre());
+                if (movie.getPictureId().equals(getString(R.string.imdb_na))) {
+                    picture.setVisibility(View.GONE);
+                } else {
+                    picture.setVisibility(View.VISIBLE);
+                    setPicture(handler.getPicture(movie.getPictureId()));
+                }
+                redraw.setVisibility(View.VISIBLE);
+                imdbButton.setVisibility(View.VISIBLE);
+                ignore.setVisibility(View.VISIBLE);
+                dialog.dismiss();
             }
-            director.setText(getString(R.string.director) + movie.getDirector());
-            actors.setText(getString(R.string.actors) + movie.getActors());
-            awards.setText(getString(R.string.awards) + movie.getAwards());
-            genre.setText(movie.getGenre());
-            if (movie.getPictureId().equals(getString(R.string.imdb_na))) {
-                picture.setVisibility(View.GONE);
-            } else {
-                picture.setVisibility(View.VISIBLE);
-                setPicture(handler.getPicture(movie.getPictureId()));
-            }
-            redraw.setVisibility(View.VISIBLE);
-            imdbButton.setVisibility(View.VISIBLE);
-            ignore.setVisibility(View.VISIBLE);
-            dialog.dismiss();
         });
     }
 
@@ -149,12 +152,7 @@ public class MovieRolled extends FragmentActivity {
             if (this.getActionBar().getTitle().equals(this.getString(R.string.app_name))) {
                 finish();
             } else {
-                try {
-                    Schedulers.computation().shutdown();
-                    Schedulers.io().shutdown();
-                } catch (Exception exception) {
-                    Log.i("i m ignoring", "this");
-                }
+                isMovieLoadingIgnored = true;
             }
         });
         dialog.setTitle(getString(R.string.loading));
@@ -171,6 +169,7 @@ public class MovieRolled extends FragmentActivity {
 
     private void setOnClickListeners() {
         RxView.clicks(redraw).subscribe(t -> {
+            isMovieLoadingIgnored = false;
             visualLoading();
             setMovie(handler.getMovieObservable());
             redraw.setVisibility(View.VISIBLE);
