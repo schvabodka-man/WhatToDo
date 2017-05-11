@@ -8,18 +8,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/ignored_covering"
+        <TextView
+            android:id="@+id/dumb_covering"
             android:layout_width="@dimen/small_picture_width"
             android:layout_height="@dimen/small_picture_height"
+            android:gravity="center"
             android:paddingEnd="@dimen/small_padding"
-            android:paddingStart="@dimen/small_padding"/>
+            android:paddingStart="@dimen/small_padding"
+            android:text="@string/no_image"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/big_text"/>
 
         <TextView
             android:id="@+id/ignored_title"
             android:layout_width="@dimen/ignored_item"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/ignored_covering"
+            android:layout_toEndOf="@+id/dumb_covering"
             android:gravity="start"
             android:paddingTop="@dimen/small_padding"
             android:textSize="@dimen/big_text"/>
@@ -29,7 +33,7 @@
             android:layout_width="@dimen/ignored_item"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ignored_title"
-            android:layout_toEndOf="@+id/ignored_covering"
+            android:layout_toEndOf="@+id/dumb_covering"
             android:gravity="start"
             android:textSize="@dimen/small_text"/>
 

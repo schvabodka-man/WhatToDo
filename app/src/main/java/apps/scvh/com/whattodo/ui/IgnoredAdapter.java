@@ -40,24 +40,21 @@ public class IgnoredAdapter extends ArrayAdapter<Movie> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Movie movie = getItem(position);
-        if (convertView == null) {
+        if (movie.getPictureId().equals("N/A")) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.ignored_movie_no_cover,
+                    parent, false);
+        } else {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.ignored_movie,
                     parent, false);
+            ImageView cover = (ImageView) convertView.findViewById(R.id.ignored_covering);
+            handler.getPicture(movie.getPictureId()).subscribe(cover::setBackground);
         }
-        //No DI here cause it's dynamic stuff
         TextView title = (TextView) convertView.findViewById(R.id.ignored_title);
         TextView director = (TextView) convertView.findViewById(R.id.ignored_director);
-        final ImageView cover = (ImageView) convertView.findViewById(R.id.ignored_covering);
         title.setText(movie.getName());
         director.setText(movie.getDirector());
-        if (movie.getPictureId().equals("N/A")) {
-            cover.setVisibility(View.INVISIBLE);
-        } else {
-            handler.getPicture(movie.getPictureId()).subscribe(drawable -> {
-                cover.setBackground(drawable);
-            });
-        }
         return convertView;
     }
 
 }
+

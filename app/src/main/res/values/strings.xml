@@ -47,4 +47,5 @@
     <string name="by_award">By award</string>
     <string name="by_score">By score</string>
     <string name="slower_warning">Search can be a lot slower!</string>
+    <string name="no_image">NO IMAGE</string>
 </resources>

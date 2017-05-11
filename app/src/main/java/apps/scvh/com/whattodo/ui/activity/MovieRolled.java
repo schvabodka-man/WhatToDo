@@ -72,7 +72,7 @@ public class MovieRolled extends FragmentActivity {
 
     private Movie movieFromObservable; //need for implementing ignoring of movies
 
-    private boolean isMovieLoadingIgnored;
+    private boolean isMovieLoadingIgnoredFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,7 @@ public class MovieRolled extends FragmentActivity {
         init();
         visualLoading();
         setOnClickListeners();
-        isMovieLoadingIgnored = false;
+        isMovieLoadingIgnoredFlag = false;
         setMovie(handler.getMovieObservable());
     }
 
@@ -114,7 +114,7 @@ public class MovieRolled extends FragmentActivity {
 
     private void setMovie(Observable<Movie> movieObservable) {
         movieObservable.subscribe(movie -> {
-            if (!isMovieLoadingIgnored) {
+            if (!isMovieLoadingIgnoredFlag) {
                 movieFromObservable = movie;
                 getActionBar().setTitle(movie.getName());
                 fullText.setText(movie.getDescription());
@@ -152,7 +152,7 @@ public class MovieRolled extends FragmentActivity {
             if (this.getActionBar().getTitle().equals(this.getString(R.string.app_name))) {
                 finish();
             } else {
-                isMovieLoadingIgnored = true;
+                isMovieLoadingIgnoredFlag = true;
             }
         });
         dialog.setTitle(getString(R.string.loading));
@@ -169,7 +169,7 @@ public class MovieRolled extends FragmentActivity {
 
     private void setOnClickListeners() {
         RxView.clicks(redraw).subscribe(t -> {
-            isMovieLoadingIgnored = false;
+            isMovieLoadingIgnoredFlag = false;
             visualLoading();
             setMovie(handler.getMovieObservable());
             redraw.setVisibility(View.VISIBLE);
