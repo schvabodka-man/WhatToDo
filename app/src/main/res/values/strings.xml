@@ -48,4 +48,5 @@
     <string name="by_score">By score</string>
     <string name="slower_warning">Search can be a lot slower!</string>
     <string name="no_image">NO IMAGE</string>
+    <string name="roll_menu">Roll!</string>
 </resources>

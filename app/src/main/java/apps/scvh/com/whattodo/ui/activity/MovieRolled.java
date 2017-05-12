@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.view.RxView;
-import com.orm.SugarContext;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -164,7 +163,6 @@ public class MovieRolled extends FragmentActivity {
         ButterKnife.bind(this);
         DaggerInjector injector = new DaggerInjector(this);
         injector.getComponent().inject(this);
-        SugarContext.init(this);
     }
 
     private void setOnClickListeners() {
