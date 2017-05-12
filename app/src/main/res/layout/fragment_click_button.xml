@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:weightSum="1">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorButtonBackground"
+                android:orientation="vertical"
+                android:weightSum="1">
 
 
     <Button
-        android:id ="@+id/push_button"
+        android:id="@+id/push_button"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:text="@string/click"
-        android:background="@drawable/button"
-        android:padding="@dimen/small_padding"
-        android:textSize="@dimen/giant_text"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
+        android:background="@drawable/button_ripple"
+        android:padding="@dimen/small_padding"
+        android:text="@string/click"
+        android:textSize="@dimen/giant_text"/>
 </RelativeLayout>
