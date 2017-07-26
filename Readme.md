@@ -14,6 +14,3 @@ Simple app to get info about some movies if you wan't to watch some movieConvert
 
 ## Frameworks, libs, etc
 Mainly Rxjava, dagger and SugarORM.
-
-## Troubles
-Right now this api i use has changed and it's not public anymore, so i need to actually just reimplement some code with using api key
