@@ -3,7 +3,7 @@ package apps.scvh.com.whattodo.util.workers;
 import java.util.HashSet;
 import java.util.concurrent.Callable;
 
-import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.essences.MovieConverted;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMovieListGenerator;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMoviePicker;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbWorker;
@@ -18,11 +18,10 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class MovieWatchPicker {
 
+    private final int NUMBER_OF_MOVIES = 3;
     private ImdbRandomMoviePicker randomMoviePicker;
     private ImdbWorker worker;
     private ImdbRandomMovieListGenerator listGenerator;
-
-    private final int NUMBER_OF_MOVIES = 3;
 
     public MovieWatchPicker(ImdbRandomMoviePicker randomMoviePicker, ImdbWorker worker,
                             ImdbRandomMovieListGenerator listGenerator) {
@@ -36,14 +35,14 @@ public class MovieWatchPicker {
      * RUS Метод просто достающим обсервер с лучшим кинцом
      * @return the movie observable
      */
-    Observable<Movie> getMovieObservable() {
-        return Observable.defer(new Callable<Observable<Movie>>() {
+    Observable<MovieConverted> getMovieObservable() {
+        return Observable.defer(new Callable<Observable<MovieConverted>>() {
             @Override
-            public Observable<Movie> call() throws Exception {
+            public Observable<MovieConverted> call() throws Exception {
                 int maxId = worker.getMovieStats();
                 HashSet<Integer> random = listGenerator.getListOfRandomId(NUMBER_OF_MOVIES, maxId);
-                HashSet<Movie> movies = listGenerator.getListOfMovies(random, maxId);
-                Movie bestOne = randomMoviePicker.pickBestMovie(movies);
+                HashSet<MovieConverted> movies = listGenerator.getListOfMovies(random, maxId);
+                MovieConverted bestOne = randomMoviePicker.pickBestMovie(movies);
                 return Observable.just(bestOne);
             }
         }).subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());

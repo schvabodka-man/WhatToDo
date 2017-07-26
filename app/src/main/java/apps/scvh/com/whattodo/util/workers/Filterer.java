@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import apps.scvh.com.whattodo.R;
-import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.essences.MovieConverted;
 
 public class Filterer {
 
@@ -18,14 +18,14 @@ public class Filterer {
         this.context = context;
     }
 
-    public boolean isFiltered(Movie movie) {
-        if (isFilteredByPictures(movie) == true) {
+    public boolean isFiltered(MovieConverted movieConverted) {
+        if (isFilteredByPictures(movieConverted) == true) {
             Log.i(context.getString(R.string.ignore), context.getString(R.string.by_pic));
             return true;
-        } else if (true == isFilteredByAwards(movie)) {
+        } else if (true == isFilteredByAwards(movieConverted)) {
             Log.i(context.getString(R.string.ignore), context.getString(R.string.by_award));
             return true;
-        } else if ("true".equals(String.valueOf(isFilteredByScore(movie)))) {
+        } else if ("true".equals(String.valueOf(isFilteredByScore(movieConverted)))) {
             Log.i(context.getString(R.string.ignore), context.getString(R.string.by_score));
             return true;
         } else {
@@ -33,9 +33,9 @@ public class Filterer {
         }
     }
 
-    private boolean isFilteredByPictures(Movie movie) {
+    private boolean isFilteredByPictures(MovieConverted movieConverted) {
         if (Boolean.toString(isFilteringByPicEnabled()).equals("true")) {
-            if (movie.getPictureId().equals(context.getString(R.string.imdb_na))) {
+            if (movieConverted.getPictureId().equals(context.getString(R.string.imdb_na))) {
                 return true;
             } else {
                 return false;
@@ -45,9 +45,9 @@ public class Filterer {
         }
     }
 
-    private boolean isFilteredByAwards(Movie movie) {
+    private boolean isFilteredByAwards(MovieConverted movieConverted) {
         if (!"false".equals(String.valueOf(isFilteringByAwardsEnabled()))) {
-            if (movie.getAwards().equals(context.getString(R.string.imdb_na))) {
+            if (movieConverted.getAwards().equals(context.getString(R.string.imdb_na))) {
                 return true;
             } else {
                 return false;
@@ -57,9 +57,9 @@ public class Filterer {
         }
     }
 
-    private boolean isFilteredByScore(Movie movie) {
+    private boolean isFilteredByScore(MovieConverted movieConverted) {
         if (true == isFilteringByScoreEnabled()) {
-            if (movie.getMetacriticScore() == 0) {
+            if (movieConverted.getMetacriticScore() == 0) {
                 return true;
             } else {
                 return false;

@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import apps.scvh.com.whattodo.R;
-import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.essences.MovieConverted;
 import apps.scvh.com.whattodo.util.workers.Filterer;
 import apps.scvh.com.whattodo.util.workers.IgnoringHelper;
 
@@ -38,22 +38,22 @@ public class ImdbRandomMovieListGenerator {
      * @param idSet id of movies
      * @return the set of movies
      */
-    public HashSet<Movie> getListOfMovies(HashSet<Integer> idSet, int maxId) {
+    public HashSet<MovieConverted> getListOfMovies(HashSet<Integer> idSet, int maxId) {
         Iterator<Integer> movieListIterator = idSet.iterator();
-        HashSet<Movie> movies = new HashSet<>();
-        Movie movie;
+        HashSet<MovieConverted> movies = new HashSet<>();
+        MovieConverted movieConverted;
         while (movieListIterator.hasNext()) {
-            movie = imdbWorker.getMovie(movieListIterator.next());
-            while (movie.getName() == null || ignoringHelper.isIgnored(movie) || movie.getName()
-                    .contains(context.getString(R.string.episode_ignored)) || movie.getName()
+            movieConverted = imdbWorker.getMovie(movieListIterator.next());
+            while (movieConverted.getName() == null || ignoringHelper.isIgnored(movieConverted) || movieConverted.getName()
+                    .contains(context.getString(R.string.episode_ignored)) || movieConverted.getName()
                     .contains(context.getString(R.string.dupe_ignored)) || filterer.isFiltered
-                    (movie)) {
+                    (movieConverted)) {
                 Log.e(String.valueOf(context.getResources().getString(R.string.log_omdb_api)),
                         String.valueOf(context.getResources().getString(R.string
                                 .log_null_movie)));
-                movie = imdbWorker.getMovie(fallbackMovie(maxId));
+                movieConverted = imdbWorker.getMovie(fallbackMovie(maxId));
             }
-            movies.add(movie);
+            movies.add(movieConverted);
         }
         return movies;
     }

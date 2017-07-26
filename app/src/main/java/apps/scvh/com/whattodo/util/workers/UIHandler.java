@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.concurrent.Callable;
 
-import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.essences.MovieConverted;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -32,7 +32,7 @@ public class UIHandler {
      * ENG simply calling method in picker
      * @return the movie observable
      */
-    public Observable<Movie> getMovieObservable() {
+    public Observable<MovieConverted> getMovieObservable() {
         return picker.getMovieObservable();
     }
 

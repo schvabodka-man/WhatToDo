@@ -13,7 +13,7 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.concurrent.Callable;
 
-import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.essences.MovieConverted;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMovieListGenerator;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbWorker;
 import apps.scvh.com.whattodo.util.workers.Filterer;
@@ -45,10 +45,10 @@ public class IgnoringHelperTest extends Application {
             public ObservableSource<Boolean> call() throws Exception {
                 HashSet<Integer> testId = new HashSet<>();
                 testId.add(137523);
-                Movie tester = new Movie();
+                MovieConverted tester = new MovieConverted();
                 tester.setImdbId(137523);
                 tester.save();
-                HashSet<Movie> nonIgnored = listGenerator.getListOfMovies(testId, worker
+                HashSet<MovieConverted> nonIgnored = listGenerator.getListOfMovies(testId, worker
                         .getMovieStats());
                 boolean isIgnored = helper.isIgnored(nonIgnored.iterator().next());
                 return Observable.just(isIgnored);

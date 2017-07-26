@@ -20,7 +20,7 @@ import javax.inject.Named;
 
 import apps.scvh.com.whattodo.R;
 import apps.scvh.com.whattodo.util.di.DaggerInjector;
-import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.essences.MovieConverted;
 import apps.scvh.com.whattodo.util.workers.GotoImdb;
 import apps.scvh.com.whattodo.util.workers.IgnoringHelper;
 import apps.scvh.com.whattodo.util.workers.UIHandler;
@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
 import io.reactivex.Observable;
 
 /**
- * The type Movie rolled.
+ * The type MovieConverted rolled.
  */
 public class MovieRolled extends FragmentActivity {
 
@@ -69,7 +69,7 @@ public class MovieRolled extends FragmentActivity {
 
     private ProgressDialog dialog;
 
-    private Movie movieFromObservable; //need for implementing ignoring of movies
+    private MovieConverted movieConvertedFromObservable; //need for implementing ignoring of movies
 
     private boolean isMovieLoadingIgnoredFlag;
 
@@ -111,10 +111,10 @@ public class MovieRolled extends FragmentActivity {
                 picture.setBackground(cover));
     }
 
-    private void setMovie(Observable<Movie> movieObservable) {
+    private void setMovie(Observable<MovieConverted> movieObservable) {
         movieObservable.subscribe(movie -> {
             if (!isMovieLoadingIgnoredFlag) {
-                movieFromObservable = movie;
+                movieConvertedFromObservable = movie;
                 getActionBar().setTitle(movie.getName());
                 fullText.setText(movie.getDescription());
                 year.setText(movie.getYear());
@@ -175,10 +175,10 @@ public class MovieRolled extends FragmentActivity {
             ignore.setVisibility(View.VISIBLE);
         });
         RxView.clicks(ignore).subscribe(t -> {
-            ignoringHelper.ignoreMovie(movieFromObservable);
+            ignoringHelper.ignoreMovie(movieConvertedFromObservable);
             Toast.makeText(this, R.string.movie_ignored, Toast.LENGTH_SHORT).show();
         });
         RxView.clicks(imdbButton).subscribe(t -> gotoLinkHandler
-                .gotoMoviePage(movieFromObservable));
+                .gotoMoviePage(movieConvertedFromObservable));
     }
 }

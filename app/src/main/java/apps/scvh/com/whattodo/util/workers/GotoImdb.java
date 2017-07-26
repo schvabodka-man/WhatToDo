@@ -9,7 +9,7 @@ import java.util.Locale;
 import java.util.concurrent.Callable;
 
 import apps.scvh.com.whattodo.R;
-import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.essences.MovieConverted;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.schedulers.Schedulers;
@@ -26,21 +26,21 @@ public class GotoImdb {
         this.context = context;
     }
 
-    public void gotoMoviePage(Movie movie) {
-        getMovieLink(movie).subscribe(url -> {
+    public void gotoMoviePage(MovieConverted movieConverted) {
+        getMovieLink(movieConverted).subscribe(url -> {
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             context.startActivity(i);
         });
     }
 
-    private Observable<String> getMovieLink(final Movie movie) {
+    private Observable<String> getMovieLink(final MovieConverted movieConverted) {
         return Observable.defer(new Callable<ObservableSource<? extends String>>() {
             @Override
             public ObservableSource<? extends String> call() throws Exception {
                 String movieUrl = context.getString(R.string.imdb_link) + String.format(Locale
                         .US, context.getString(R
-                        .string.imdb_leading_zeroes), movie.getImdbId()); //This is for zeroes at
+                        .string.imdb_leading_zeroes), movieConverted.getImdbId()); //This is for zeroes at
                 // the beginning of id
                 return Observable.just(movieUrl);
             }

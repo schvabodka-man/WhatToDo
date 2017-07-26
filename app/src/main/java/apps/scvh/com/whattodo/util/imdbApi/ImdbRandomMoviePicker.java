@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
 
-import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.essences.MovieConverted;
 
 /**
  * RUS этот класс отвечает за получение  рандомного фильма из списка фильмов
@@ -16,15 +16,15 @@ public class ImdbRandomMoviePicker {
 
 
     /**
-     * ENG this one is counting the "score" of movie
+     * ENG this one is counting the "score" of movieConverted
      * RUS этот метод считает бал фильма
-     * @param movie the movie
-     * @return the score of movie
+     * @param movieConverted the movieConverted
+     * @return the score of movieConverted
      */
-    private double countScore(Movie movie) {
+    private double countScore(MovieConverted movieConverted) {
         Random random = new Random();
         double randomScore = random.nextInt(100);
-        return randomScore * movie.getImdbScore() * movie.getMetacriticScore();
+        return randomScore * movieConverted.getImdbScore() * movieConverted.getMetacriticScore();
     }
 
 
@@ -34,15 +34,15 @@ public class ImdbRandomMoviePicker {
      * @param movies set of movies
      * @return the best movie
      */
-    public Movie pickBestMovie(HashSet<Movie> movies) {
-        Iterator<Movie> moviesIterator = movies.iterator();
-        Movie nextMovie;
+    public MovieConverted pickBestMovie(HashSet<MovieConverted> movies) {
+        Iterator<MovieConverted> moviesIterator = movies.iterator();
+        MovieConverted nextMovieConverted;
         while (moviesIterator.hasNext()) {
-            nextMovie = moviesIterator.next();
-            countScore(nextMovie);
+            nextMovieConverted = moviesIterator.next();
+            countScore(nextMovieConverted);
         }
-        Movie finalMovie = Collections.max(movies);
-        return finalMovie;
+        MovieConverted finalMovieConverted = Collections.max(movies);
+        return finalMovieConverted;
     }
 
 }

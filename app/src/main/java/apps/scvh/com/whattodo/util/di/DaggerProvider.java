@@ -3,14 +3,13 @@ package apps.scvh.com.whattodo.util.di;
 import android.content.Context;
 import android.preference.PreferenceManager;
 
-import com.omertron.omdbapi.OmdbApi;
-
 import javax.inject.Named;
 import javax.inject.Singleton;
 
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMovieListGenerator;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbRandomMoviePicker;
 import apps.scvh.com.whattodo.util.imdbApi.ImdbWorker;
+import apps.scvh.com.whattodo.util.omdbImplementation.OmdbAPIRetriever;
 import apps.scvh.com.whattodo.util.workers.Filterer;
 import apps.scvh.com.whattodo.util.workers.GotoImdb;
 import apps.scvh.com.whattodo.util.workers.IgnoringHelper;
@@ -27,11 +26,11 @@ import dagger.Provides;
 @Module
 public class DaggerProvider {
 
+    private Context context;
+
     public DaggerProvider(Context context) {
         this.context = context;
     }
-
-    private Context context;
 
     @Provides
     @Named("ImdbRandomMoviePicker")
@@ -42,7 +41,7 @@ public class DaggerProvider {
     @Provides
     @Named("ImdbWorker")
     ImdbWorker provideWorker() {
-        return new ImdbWorker(context, new OmdbApi());
+        return new ImdbWorker(context, new OmdbAPIRetriever());
     }
 
     @Provides

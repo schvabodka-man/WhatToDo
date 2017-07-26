@@ -3,7 +3,7 @@ package apps.scvh.com.whattodo.util.workers;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.essences.MovieConverted;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -15,27 +15,27 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class IgnoringHelper {
 
-    public void ignoreMovie(Movie movie) {
-        Observable.just(movie).subscribeOn(Schedulers.io()).subscribe(getMovie -> movie.save());
+    public void ignoreMovie(MovieConverted movieConverted) {
+        Observable.just(movieConverted).subscribeOn(Schedulers.io()).subscribe(getMovie -> movieConverted.save());
         //i like that
     }
 
-    public void unignoreMovie(Movie movie) {
-        Observable.just(movie).subscribeOn(Schedulers.io()).subscribe(getMovie -> movie.delete())
+    public void unignoreMovie(MovieConverted movieConverted) {
+        Observable.just(movieConverted).subscribeOn(Schedulers.io()).subscribe(getMovie -> movieConverted.delete())
         ; //i like that
     }
 
-    public boolean isIgnored(Movie movie) {
-        List<Movie> result = Movie.find(Movie.class, "imdb_id = ?", String.valueOf(movie
+    public boolean isIgnored(MovieConverted movieConverted) {
+        List<MovieConverted> result = MovieConverted.find(MovieConverted.class, "imdb_id = ?", String.valueOf(movieConverted
                 .getImdbId()));
         return !result.isEmpty();
     }
 
-    public Observable<List<Movie>> getListOfIgnoredMovies() {
-        return Observable.defer(new Callable<ObservableSource<List<Movie>>>() {
+    public Observable<List<MovieConverted>> getListOfIgnoredMovies() {
+        return Observable.defer(new Callable<ObservableSource<List<MovieConverted>>>() {
             @Override
-            public ObservableSource<List<Movie>> call() throws Exception {
-                return Observable.just(Movie.listAll(Movie.class));
+            public ObservableSource<List<MovieConverted>> call() throws Exception {
+                return Observable.just(MovieConverted.listAll(MovieConverted.class));
             }
         }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
     }

@@ -14,7 +14,7 @@ import javax.inject.Named;
 import apps.scvh.com.whattodo.R;
 import apps.scvh.com.whattodo.ui.IgnoredAdapter;
 import apps.scvh.com.whattodo.util.di.DaggerInjector;
-import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.essences.MovieConverted;
 import apps.scvh.com.whattodo.util.workers.IgnoringHelper;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +30,7 @@ public class IgnoredMovies extends Activity {
 
     private IgnoredAdapter adapter;
     private Context context;
-    private ArrayList<Movie> moviesFromAdapter; //this one for UI
+    private ArrayList<MovieConverted> moviesFromAdapter; //this one for UI
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class IgnoredMovies extends Activity {
     private void init() {
         context = this;
         helper.getListOfIgnoredMovies().subscribe(movies -> {
-            moviesFromAdapter = (ArrayList<Movie>) movies;
+            moviesFromAdapter = (ArrayList<MovieConverted>) movies;
             adapter = new IgnoredAdapter(context, moviesFromAdapter);
             list.setAdapter(adapter);
         });

@@ -4,11 +4,6 @@ package apps.scvh.com.whattodo.util.imdbApi;
 import android.content.Context;
 import android.util.Log;
 
-import com.omertron.omdbapi.OMDBException;
-import com.omertron.omdbapi.OmdbApi;
-import com.omertron.omdbapi.model.OmdbVideoFull;
-import com.omertron.omdbapi.tools.OmdbBuilder;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -17,8 +12,10 @@ import java.io.IOException;
 import java.util.Locale;
 
 import apps.scvh.com.whattodo.R;
-import apps.scvh.com.whattodo.util.essences.Movie;
 import apps.scvh.com.whattodo.util.essences.MovieBuilder;
+import apps.scvh.com.whattodo.util.essences.MovieConverted;
+import apps.scvh.com.whattodo.util.omdbImplementation.Movie;
+import apps.scvh.com.whattodo.util.omdbImplementation.OmdbAPIRetriever;
 
 /**
  * ENG this class is getting data from omdb api
@@ -27,9 +24,9 @@ import apps.scvh.com.whattodo.util.essences.MovieBuilder;
 public class ImdbWorker {
 
     private Context context;
-    private OmdbApi omdbApi;
+    private OmdbAPIRetriever omdbApi;
 
-    public ImdbWorker(Context context, OmdbApi omdbApi) {
+    public ImdbWorker(Context context, OmdbAPIRetriever omdbApi) {
         this.context = context;
         this.omdbApi = omdbApi;
     }
@@ -40,43 +37,39 @@ public class ImdbWorker {
      * @param id the movie id
      * @return the movie
      */
-    public Movie getMovie(int id) {
+    MovieConverted getMovie(int id) {
         MovieBuilder movieBuilder = new MovieBuilder();
-        Movie movie = new Movie();
         String withLeadingZeroes = String.format(Locale.US, context.getResources().getString(R
                 .string.imdb_leading_zeroes), id); //This is for zeroes at the beginning of id
-        try {
-            OmdbVideoFull result = omdbApi.getInfo(new OmdbBuilder().setImdbId(String.valueOf
-                    (context.getResources().getText(R.string.imdb_prefix)) + withLeadingZeroes)
-                    .build());
-            movieBuilder.setGenre(result.getGenre())
-                    .setYear(result.getYear())
-                    .setName(result.getTitle())
-                    .setRuntime(result.getRuntime())
-                    .setDescription(result.getPlot())
-                    .setId(id)
-                    .setActors(result.getActors())
-                    .setAwards(result.getAwards())
-                    .setDirector(result.getDirector())
-                    .setMetascore(result.getMetascore())
-                    .setPicture(result.getPoster());
-            if (result.getImdbRating().equals(context.getResources().getString(R.string.imdb_na))) {
-                Log.d(String.valueOf(context.getResources().getText(R.string.log_omdb_api)),
-                        String.valueOf(context.getResources().getText(R.string
-                                .log_omdb_unknown_imdb_rating)));
-                movieBuilder.setImdbScore(1);
-            } else {
-                Log.i(String.valueOf(context.getResources().getText(R.string.log_omdb_api)),
-                        String.valueOf(context.getResources().getText(R.string.log_imdb_score)) +
-                                result.getImdbRating());
-                movieBuilder.setImdbScore(Double.parseDouble(result.getImdbRating()));
-            }
-            movie = movieBuilder.build();
-        } catch (OMDBException e) {
-            Log.e(String.valueOf(context.getResources().getText(R.string.log_omdb_api)), e
-                    .toString());
+        Movie result = omdbApi.retrieveMovie(String.valueOf
+                (context.getResources().getText(R.string.imdb_prefix)) + withLeadingZeroes, "22189408");
+        movieBuilder.setGenre(result.getGenre())
+                .setYear(result.getReleased())
+                .setName(result.getTitle())
+                .setRuntime(result.getRuntime())
+                .setDescription(result.getPlot())
+                .setId(id)
+                .setActors(result.getActors())
+                .setAwards(result.getAwards())
+                .setDirector(result.getDirector())
+                .setPicture(result.getPoster());
+        if (String.valueOf(result.getImdbRating()).equals(context.getResources().getString(R.string.imdb_na))) {
+            Log.d(String.valueOf(context.getResources().getText(R.string.log_omdb_api)),
+                    String.valueOf(context.getResources().getText(R.string
+                            .log_omdb_unknown_imdb_rating)));
+            movieBuilder.setImdbScore(1);
+        } else {
+            Log.i(String.valueOf(context.getResources().getText(R.string.log_omdb_api)),
+                    String.valueOf(context.getResources().getText(R.string.log_imdb_score)) +
+                            result.getImdbRating());
+            movieBuilder.setImdbScore(Double.parseDouble(result.getImdbRating()));
         }
-        return movie;
+        if (String.valueOf(result.getMetascore()).equals(context.getResources().getString(R.string.imdb_na))) {
+            movieBuilder.setMetascore(1);
+        } else {
+            movieBuilder.setMetascore(Integer.parseInt(result.getMetascore()));
+        }
+        return movieBuilder.build();
     }
 
     /**

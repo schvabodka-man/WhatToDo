@@ -16,7 +16,7 @@ import javax.inject.Named;
 
 import apps.scvh.com.whattodo.R;
 import apps.scvh.com.whattodo.util.di.DaggerInjector;
-import apps.scvh.com.whattodo.util.essences.Movie;
+import apps.scvh.com.whattodo.util.essences.MovieConverted;
 import apps.scvh.com.whattodo.util.workers.UIHandler;
 
 
@@ -24,14 +24,14 @@ import apps.scvh.com.whattodo.util.workers.UIHandler;
  * ENG adapter need for displaying ignored movies
  * RUS адаптер нужный мне чтобы показать заигноренные кинчики
  */
-public class IgnoredAdapter extends ArrayAdapter<Movie> {
+public class IgnoredAdapter extends ArrayAdapter<MovieConverted> {
 
     @Inject
     @Named("UIHandler")
     UIHandler handler;
 
-    public IgnoredAdapter(Context context, ArrayList<Movie> movieList) {
-        super(context, 0, movieList);
+    public IgnoredAdapter(Context context, ArrayList<MovieConverted> movieConvertedList) {
+        super(context, 0, movieConvertedList);
         DaggerInjector injector = new DaggerInjector(context);
         injector.getComponent().inject(this);
     }
@@ -39,20 +39,20 @@ public class IgnoredAdapter extends ArrayAdapter<Movie> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Movie movie = getItem(position);
-        if (movie.getPictureId().equals("N/A")) {
+        MovieConverted movieConverted = getItem(position);
+        if (movieConverted.getPictureId().equals("N/A")) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.ignored_movie_no_cover,
                     parent, false);
         } else {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.ignored_movie,
                     parent, false);
             ImageView cover = (ImageView) convertView.findViewById(R.id.ignored_covering);
-            handler.getPicture(movie.getPictureId()).subscribe(cover::setBackground);
+            handler.getPicture(movieConverted.getPictureId()).subscribe(cover::setBackground);
         }
         TextView title = (TextView) convertView.findViewById(R.id.ignored_title);
         TextView director = (TextView) convertView.findViewById(R.id.ignored_director);
-        title.setText(movie.getName());
-        director.setText(movie.getDirector());
+        title.setText(movieConverted.getName());
+        director.setText(movieConverted.getDirector());
         return convertView;
     }
 

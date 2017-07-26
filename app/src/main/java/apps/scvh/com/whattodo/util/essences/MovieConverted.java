@@ -4,7 +4,7 @@ package apps.scvh.com.whattodo.util.essences;
 import com.orm.SugarRecord;
 import com.orm.dsl.Ignore;
 
-public class Movie extends SugarRecord implements Comparable<Movie> {
+public class MovieConverted extends SugarRecord implements Comparable<MovieConverted> {
 
     private int imdbId;
     private String name;
@@ -141,7 +141,7 @@ public class Movie extends SugarRecord implements Comparable<Movie> {
     }
 
     @Override
-    public int compareTo(Movie o) {
+    public int compareTo(MovieConverted o) {
         if (o.getFinalScore() > this.finalScore) {
             return 1;
         } else if (o.getFinalScore() < this.finalScore) {
@@ -153,8 +153,8 @@ public class Movie extends SugarRecord implements Comparable<Movie> {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj.getClass().toString().equals("Movie")) {
-            Movie compare = (Movie) obj;
+        if (obj.getClass().toString().equals("MovieConverted")) {
+            MovieConverted compare = (MovieConverted) obj;
             if (compare.getImdbId() == this.imdbId) {
                 return true;
             } else {
