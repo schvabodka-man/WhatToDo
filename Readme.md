@@ -1,4 +1,4 @@
-<a href="url"><img src="http://forthebadge.com/images/badges/built-for-android.svg" width="500" height="50"></a>
+<a href="url"><img src="http://forthebadge.com/images/badges/built-for-android.svg" width="400" height="50"></a>
 # What is this?
 
 Simple app to get info about some movies if you wan't to watch some movieConverted and you don't know what to watch. Just press a button and get yourself some interesting movie. Provided with filters and possibility to ignore some movies.
