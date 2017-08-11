@@ -8,7 +8,7 @@ Simple app to get info about some movies if you wan't to watch some movieConvert
 <div style="max-width: 20%;max-height: 20%;display: inline-block; align: center;">
 <a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/moviesroller/button.png" height="400" width="200"  align="left"></a>
 
-<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/moviesroller/movieConverted.png"  height="400" width="200" align="center"></a>
+<a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/moviesroller/movie.png"  height="400" width="200" align="center"></a>
 
 <a href="url"><img src="https://raw.githubusercontent.com/schvabodka-man/Screenshots/master/projects/moviesroller/ignored.png" height="400" width="200" align="left"></a>
 
