@@ -6,44 +6,44 @@ import com.google.gson.annotations.SerializedName
 class Movie {
 
     @SerializedName("Title")
-    lateinit var title: String
+    var title: String = "No Title"
     @SerializedName("Rated")
-    lateinit var rated: String
+    var rated: String? = "N/A"
     @SerializedName("Genre")
-    lateinit var genre: String
+    var genre: String? = "N/A"
     @SerializedName("Director")
-    lateinit var director: String
+    var director: String? = "N/A"
     @SerializedName("Writer")
-    lateinit var writer: String
+    var writer: String? = "N/A"
     @SerializedName("Actors")
-    lateinit var actors: String
+    var actors: String? = "N/A"
     @SerializedName("Plot")
-    lateinit var plot: String
+    var plot: String? = "N/A"
     @SerializedName("Language")
-    lateinit var language: String
+    var language: String? = "N/A"
     @SerializedName("Country")
-    lateinit var country: String
+    var country: String? = "N/A"
     @SerializedName("Awards")
-    lateinit var awards: String
+    var awards: String? = "N/A"
     @SerializedName("Poster")
-    lateinit var poster: String
+    var poster: String? = "N/A"
     @SerializedName("Type")
-    lateinit var type: String
+    var type: String? = "N/A"
     @SerializedName("Production")
-    lateinit var production: String
+    var production: String? = "N/A"
     @SerializedName("Website")
-    lateinit var website: String
+    var website: String? = "N/A"
     @SerializedName("Runtime")
-    lateinit var runtime: String
+    var runtime: String? = "N/A"
     @SerializedName("Released")
-    lateinit var released: String
+    var released: String? = "N/A"
     @SerializedName("DVD")
-    lateinit var dvd: String
+    var dvd: String? = "N/A"
     @SerializedName("BoxOffice")
-    lateinit var boxoffice: String
-    lateinit var imdbVotes: String
-    lateinit var imdbID: String
+    var boxoffice: String? = "N/A"
+    var imdbVotes: String? = "N/A"
+    var imdbID: String? = null
     @SerializedName("Metascore")
-    lateinit var metascore: String
-    lateinit var imdbRating: String
+    var metascore: String? = "N/A"
+    var imdbRating: String? = "N/A"
 }
