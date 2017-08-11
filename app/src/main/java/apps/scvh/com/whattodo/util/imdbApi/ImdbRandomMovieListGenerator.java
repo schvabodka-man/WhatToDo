@@ -46,7 +46,8 @@ public class ImdbRandomMovieListGenerator {
             movieConverted = imdbWorker.getMovie(movieListIterator.next());
             while (movieConverted.getName() == null || ignoringHelper.isIgnored(movieConverted) || movieConverted.getName()
                     .contains(context.getString(R.string.episode_ignored)) || movieConverted.getName()
-                    .contains(context.getString(R.string.dupe_ignored)) || filterer.isFiltered
+                    .contains(context.getString(R.string.dupe_ignored)) || movieConverted.getName()
+                    .equals(context.getString(R.string.imdb_na)) || filterer.isFiltered
                     (movieConverted)) {
                 Log.e(String.valueOf(context.getResources().getString(R.string.log_omdb_api)),
                         String.valueOf(context.getResources().getString(R.string

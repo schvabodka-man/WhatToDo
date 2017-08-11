@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 class Movie {
 
     @SerializedName("Title")
-    var title: String = "No Title"
+    var title: String = "N/A"
     @SerializedName("Rated")
     var rated: String? = "N/A"
     @SerializedName("Genre")
