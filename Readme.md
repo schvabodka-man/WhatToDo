@@ -2,6 +2,7 @@
 
 <div style="display: inline-block;">
 <img src="https://raw.githubusercontent.com/schvabodka-man/Custom-Badges/master/Languages/Java/png/Java%20xxxhdpi.png" width="300" height="46">
+<img src="https://raw.githubusercontent.com/schvabodka-man/Custom-Badges/master/Languages/Kotlin/png/Kotlin%20xxxhdpi.png" width="300" height="46">
 <img src="http://forthebadge.com/images/badges/built-for-android.svg" width="300" height="45">
 </div>
 
